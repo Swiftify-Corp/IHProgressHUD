@@ -1,0 +1,6 @@
+framework module IHProgressHUD {
+  umbrella header "IHProgressHUD-iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

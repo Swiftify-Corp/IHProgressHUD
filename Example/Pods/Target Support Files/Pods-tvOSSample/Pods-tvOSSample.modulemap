@@ -1,0 +1,6 @@
+framework module Pods_tvOSSample {
+  umbrella header "Pods-tvOSSample-umbrella.h"
+
+  export *
+  module * { export * }
+}

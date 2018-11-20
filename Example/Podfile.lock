@@ -1,0 +1,16 @@
+PODS:
+  - IHProgressHUD (0.1.0)
+
+DEPENDENCIES:
+  - IHProgressHUD (from `../`)
+
+EXTERNAL SOURCES:
+  IHProgressHUD:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  IHProgressHUD: 4309505af8ce6f18d1d8e46c50863dfbbd742ed7
+
+PODFILE CHECKSUM: efdb49cfc67477ff5a3ae46a2dc2a38bd7874d13
+
+COCOAPODS: 1.5.3
