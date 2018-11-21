@@ -70,16 +70,16 @@ SVProgressHUD.dismiss()
 
 You can show the status of indeterminate tasks using one of the following:
 
-```objective-c
-+ (void)show;
-+ (void)showWithStatus:(NSString*)string;
+```Swift
+class func show()
+class func show(withStatus status: String?)
 ```
 
 If you'd like the HUD to reflect the progress of a task, use one of these:
 
-```objective-c
-+ (void)showProgress:(CGFloat)progress;
-+ (void)showProgress:(CGFloat)progress status:(NSString*)status;
+```Swift
+class func show(progress: CGFloat)
+class func show(progress: CGFloat, status: String?)
 ```
 
 ### Dismissing the HUD
@@ -103,11 +103,11 @@ The HUD will get dismissed once the popActivity calls will match the number of s
 
 Or show a confirmation glyph before before getting dismissed a little bit later. The display time depends on `minimumDismissTimeInterval` and the length of the given string.
 
-```objective-c
-+ (void)showInfoWithStatus:(NSString*)string;
-+ (void)showSuccessWithStatus:(NSString*)string;
-+ (void)showErrorWithStatus:(NSString*)string;
-+ (void)showImage:(UIImage*)image status:(NSString*)string;
+```Swift
+class func showInfowithStatus(_ status: String?)
+class func showSuccesswithStatus(_ status: String?)
+class func showError(withStatus status: String?)
+class func showImage(_ image: UIImage, status: String?)
 ```
 
 ## Customization
