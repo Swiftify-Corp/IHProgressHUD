@@ -126,9 +126,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "209"
-            endingLineNumber = "209"
-            landmarkName = "loadImageBundle(named:)"
-            landmarkType = "7">
+            endingLineNumber = "209">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

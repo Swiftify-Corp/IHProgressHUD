@@ -2,7 +2,7 @@
 //  Converted to Swift 4 by Swiftify v4.2.29618 - https://objectivec2swift.com/
 //
 //  ViewController.swift
-//  IHProgressHUD : Inspired by IHProgressHUD, https://github.com/SVProgressHUD/SVProgressHUD
+//  IHProgressHUD : Inspired by SVProgressHUD, https://github.com/SVProgressHUD/SVProgressHUD
 //  Created by mdibrahimhassan@gmail.com on 11/20/2018.
 //  Copyright (c) 2018 mdibrahimhassan@gmail.com. All rights reserved.
 //

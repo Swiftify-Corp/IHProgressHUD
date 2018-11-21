@@ -2,7 +2,7 @@
 //  Converted to Swift 4 by Swiftify v4.2.29618 - https://objectivec2swift.com/
 //
 //  IndefiniteAnimatedView.swift
-//  IHProgressHUD, https://github.com/IHProgressHUD/IHProgressHUD
+//  SVProgressHUD, https://github.com/IHProgressHUD/IHProgressHUD
 //
 //  Original Copyright (c) 2014-2018 Guillaume Campagna. All rights reserved.
 //  Modified Copyright © 2018 Ibrahim Hassan. All rights reserved.
@@ -983,7 +983,7 @@ extension IHProgressHUD {
     }
     // default is [UIColor blackColor], only used for ProgressHUDStyleCustom
     
-    public class func set(backgroundColor color: UIColor?) {
+    public class func set(backgroundColor color: UIColor) {
         sharedView.backgroundColor = color
         sharedView.defaultStyle = .custom
     } // default is [UIColor whiteColor], only used for ProgressHUDStyleCustom

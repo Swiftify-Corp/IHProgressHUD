@@ -18,7 +18,7 @@ Try `SVProgressHUD` on [Appetize.io](https://appetize.io/app/p8r2cvy8kq74x7q7tjq
 
 ### From CocoaPods
 
-[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries like `IHProgressHUD` in your projects. First, add the following line to your [Podfile](http://guides.cocoapods.org/using/using-cocoapods.html):
+[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C and Swift, which automates and simplifies the process of using 3rd-party libraries like `IHProgressHUD` in your projects. First, add the following line to your [Podfile](http://guides.cocoapods.org/using/using-cocoapods.html):
 
 ```ruby
 pod 'IHProgressHUD'
@@ -86,15 +86,17 @@ If you'd like the HUD to reflect the progress of a task, use one of these:
 
 The HUD can be dismissed using:
 
-```objective-c
-+ (void)dismiss;
-+ (void)dismissWithDelay:(NSTimeInterval)delay;
+```Swift
+class func dismiss()
+class func dismissWithCompletion(_ completion: (() -> Void)?)
+class func dismissWithDelay(_ delay: TimeInterval)
+class func dismissWithDelay(_ delay: TimeInterval, completion: (() -> Void)?)
 ```
 
 If you'd like to stack HUDs, you can balance out every show call using:
 
 ```
-+ (void)popActivity;
+class func popActivity()
 ```
 
 The HUD will get dismissed once the popActivity calls will match the number of show calls.
@@ -113,33 +115,33 @@ Or show a confirmation glyph before before getting dismissed a little bit later.
 `IHProgressHUD` can be customized via the following methods:
 
 ```Swift
-class func set(defaultStyle style: IHProgressHUDStyle)                  // default is IHProgressHUDStyle.light
-class func set(defaultMaskType maskType: IHProgressHUDMaskType)         // default is IHProgressHUDMaskType.none
-class func set(defaultAnimationType type: IHProgressHUDAnimationType)   // default is IHProgressHUDAnimationType.flat
-class func set(containerView: UIView?)                                  // default is window level
-class func set(minimumSize: CGSize)                                     // default is CGSize.zero, can be used to avoid resizing
-class func set(ringThickness: CGFloat)                                  // default is 2 pt
-class func set(ringRadius : CGFloat)                                    // default is 18 pt
-class func setRing(noTextRingRadius radius: CGFloat)                    // default is 24 pt
-class func set(cornerRadius: CGFloat)                                   // default is 14 pt
-class func set(borderColor color : UIColor)                             // default is nil
-class func set(borderWidth width: CGFloat)                              // default is 0
-class func set(font: UIFont)                                            // default is UIFont.preferredFont(forTextStyle: .subheadline)
-class func set(foregroundColor color: UIColor)                        
-class func set(backgroundColor color: UIColor?)                         
-class func set(backgroundLayerColor color: UIColor)                     // default is UIColor.init(white: 0, alpha: 0.4), only used for SVProgressHUDMaskTypeCustom
-class func set(imageViewSize size: CGSize)                              // default is 28x28 pt
-class func set(shouldTintImages: Bool)                                  // default is true
-class func set(infoImage image: UIImage)                                // default is the bundled info image provided by Freepik
-class func setSuccessImage(successImage image: UIImage)                 // default is bundled success image from Freepik
-class func setErrorImage(errorImage image: UIImage)                     // default is bundled error image from Freepik
-class func set(viewForExtension view: UIView)                           // default is nil, only used for App Extensions
-class func set(graceTimeInterval interval: TimeInterval)                // default is 5.0 seconds
-class func set(maximumDismissTimeInterval interval: TimeInterval)       // default is TimeInterval(CGFloat.infinity)
-class func setFadeInAnimationDuration(fadeInAnimationDuration duration: TimeInterval)       // default is 0.15 seconds
-class func setFadeOutAnimationDuration(fadeOutAnimationDuration duration: TimeInterval)     // default is 0.15 seconds
-class func setMaxSupportedWindowLevel(maxSupportedWindowLevel windowLevel: UIWindow.Level)  // default is UIWindowLevelNormal
-class func setHapticsEnabled(hapticsEnabled: Bool)                      // default is NO
+class func set(defaultStyle style: IHProgressHUDStyle) // default is IHProgressHUDStyle.light
+class func set(defaultMaskType maskType: IHProgressHUDMaskType) // default is IHProgressHUDMaskType.none
+class func set(defaultAnimationType type: IHProgressHUDAnimationType) // default is IHProgressHUDAnimationType.flat
+class func set(containerView: UIView?) // default is window level
+class func set(minimumSize: CGSize) // default is CGSize.zero, can be used to avoid resizing
+class func set(ringThickness: CGFloat) // default is 2 pt
+class func set(ringRadius : CGFloat) // default is 18 pt
+class func setRing(noTextRingRadius radius: CGFloat) // default is 24 pt
+class func set(cornerRadius: CGFloat) // default is 14 pt
+class func set(borderColor color : UIColor) // default is nil
+class func set(borderWidth width: CGFloat)  // default is 0
+class func set(font: UIFont) // default is UIFont.preferredFont(forTextStyle: .subheadline)
+class func set(foregroundColor color: UIColor) // default is nil                    
+class func set(backgroundColor color: UIColor) // default is nil                        
+class func set(backgroundLayerColor color: UIColor) // default is UIColor.init(white: 0, alpha: 0.4), only used for SVProgressHUDMaskTypeCustom
+class func set(imageViewSize size: CGSize) // default is 28x28 pt
+class func set(shouldTintImages: Bool) // default is true
+class func set(infoImage image: UIImage) // default is the bundled info image provided by Freepik
+class func setSuccessImage(successImage image: UIImage) // default is bundled success image from Freepik
+class func setErrorImage(errorImage image: UIImage) // default is bundled error image from Freepik
+class func set(viewForExtension view: UIView) // default is nil, only used for App Extensions
+class func set(graceTimeInterval interval: TimeInterval) // default is 5.0 seconds
+class func set(maximumDismissTimeInterval interval: TimeInterval) // default is TimeInterval(CGFloat.infinity)
+class func setFadeInAnimationDuration(fadeInAnimationDuration duration: TimeInterval) // default is 0.15 seconds
+class func setFadeOutAnimationDuration(fadeOutAnimationDuration duration: TimeInterval) // default is 0.15 seconds
+class func setMaxSupportedWindowLevel(maxSupportedWindowLevel windowLevel: UIWindow.Level) // default is UIWindowLevelNormal
+class func setHapticsEnabled(hapticsEnabled: Bool) // default is NO
 ```
 
 ### Hint
