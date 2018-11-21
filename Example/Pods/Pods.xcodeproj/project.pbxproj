@@ -31,7 +31,7 @@
 		6BED6633E7FFBE0DF488AB245EEE1EEA /* success.png in Sources */ = {isa = PBXBuildFile; fileRef = 359986584E8E5FC1203CD28DA35AE165 /* success.png */; };
 		71DDB325482EF79356C7272054D0375F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D82D69E95C491EEFEB2F2C3C94D2971 /* Foundation.framework */; };
 		8366B66265FFC8FC0701BE210C45824B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D88435484D81E3FE342FBDFAA4B76EE /* Foundation.framework */; };
-		839415633944F6B242CFBA8E95C14929 /* IHProgressHUDSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F37AA8046240E3776AB022427433464 /* IHProgressHUDSwift.swift */; };
+		839415633944F6B242CFBA8E95C14929 /* IHProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F37AA8046240E3776AB022427433464 /* IHProgressHUD.swift */; };
 		8768E7520D3DC077938F6E098524CD38 /* error@3x.png in Sources */ = {isa = PBXBuildFile; fileRef = 285E93A408A6398570E32D5A66458951 /* error@3x.png */; };
 		902D354A9FF333F509A5C6E95FEB4ECF /* Pods-TodayExtensionDemo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 925243C4E8704C2D7E3176ADBD946A29 /* Pods-TodayExtensionDemo-dummy.m */; };
 		921E89CEC3A9D93D084A1E83A5D7C213 /* success@3x.png in Sources */ = {isa = PBXBuildFile; fileRef = AE267403793A1164AEAF6B7A5F3CAA9D /* success@3x.png */; };
@@ -46,7 +46,7 @@
 		BA9A9E8D43632C2365EBA47B803400E8 /* success@2x.png in Sources */ = {isa = PBXBuildFile; fileRef = C8D5C2F97F4989FE9C7F1676024BEEE2 /* success@2x.png */; };
 		BC88F7EBE1614C625432290A5010255B /* IHProgressHUD-tvOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 621319EF5A0F2DC38E3A54DA2F819C7D /* IHProgressHUD-tvOS-dummy.m */; };
 		C0FAF7D162E5D0DE1C1A7E75BEC514BB /* angle-mask@3x.png in Sources */ = {isa = PBXBuildFile; fileRef = 42BD37B9B2E14D2667B99F185BAF0BB5 /* angle-mask@3x.png */; };
-		C32C31263AF1BEB436AF5501521363FF /* IHProgressHUDSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F37AA8046240E3776AB022427433464 /* IHProgressHUDSwift.swift */; };
+		C32C31263AF1BEB436AF5501521363FF /* IHProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F37AA8046240E3776AB022427433464 /* IHProgressHUD.swift */; };
 		C67D5EF5C9E20FBB663A6C8B46C3B1CE /* success@3x.png in Sources */ = {isa = PBXBuildFile; fileRef = AE267403793A1164AEAF6B7A5F3CAA9D /* success@3x.png */; };
 		CDFAA7C08361E97B60EC12D8F77FBB7C /* ProgressAnimatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F436A6054816BC8C8E6EC18989917C /* ProgressAnimatedView.swift */; };
 		D9B70347DC173510FD70856E682FC5E4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D48B002E02E07E19F67FD65F391E0D4B /* QuartzCore.framework */; };
@@ -125,7 +125,7 @@
 		5856C4CA6B455477DE7D9CF099799D59 /* IHProgressHUD-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "IHProgressHUD-iOS.xcconfig"; sourceTree = "<group>"; };
 		5BF2866FFB5FBB7CE080E28E2E3E23B5 /* IHProgressHUD-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "IHProgressHUD-iOS-dummy.m"; sourceTree = "<group>"; };
 		5DE118DF8A0C065DFA64992AF7BE0D7F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		5F37AA8046240E3776AB022427433464 /* IHProgressHUDSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IHProgressHUDSwift.swift; path = IHProgressHUD/Classes/IHProgressHUDSwift.swift; sourceTree = "<group>"; };
+		5F37AA8046240E3776AB022427433464 /* IHProgressHUD.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IHProgressHUD.swift; path = IHProgressHUD/Classes/IHProgressHUD.swift; sourceTree = "<group>"; };
 		621319EF5A0F2DC38E3A54DA2F819C7D /* IHProgressHUD-tvOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "IHProgressHUD-tvOS-dummy.m"; path = "../IHProgressHUD-tvOS/IHProgressHUD-tvOS-dummy.m"; sourceTree = "<group>"; };
 		6326680CA5AD49C8B70D3FE4D9C226EE /* info.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		6457401E4C73EB06253CAC1222960DA4 /* info@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = "info@3x.png"; sourceTree = "<group>"; };
@@ -293,7 +293,7 @@
 		8B83B3CA13052DD8904AD8BE16EEC3CC /* IHProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				5F37AA8046240E3776AB022427433464 /* IHProgressHUDSwift.swift */,
+				5F37AA8046240E3776AB022427433464 /* IHProgressHUD.swift */,
 				2204C9C6243AA601B6919AC1B606B62A /* IndefiniteAnimatedView.swift */,
 				D8F436A6054816BC8C8E6EC18989917C /* ProgressAnimatedView.swift */,
 				BD7033FE511ECA25AF94D3882F2759F2 /* RadialGradientLayer.swift */,
@@ -647,7 +647,7 @@
 				60EE2F0AD5BD2BD6EE982994E652482E /* error@2x.png in Sources */,
 				B19F8AB559EF22370D5D1FE5E61800B4 /* error@3x.png in Sources */,
 				DCA8C9B2A8656C270704766D0108D4F6 /* IHProgressHUD-iOS-dummy.m in Sources */,
-				C32C31263AF1BEB436AF5501521363FF /* IHProgressHUDSwift.swift in Sources */,
+				C32C31263AF1BEB436AF5501521363FF /* IHProgressHUD.swift in Sources */,
 				46462C1BB1B3557F9431EFBD16002D8F /* IndefiniteAnimatedView.swift in Sources */,
 				B66A119426EA6122D1C14B7E787C64E1 /* info.png in Sources */,
 				F903BFEFB76B5BE145B9C593CF801DDD /* info@2x.png in Sources */,
@@ -687,7 +687,7 @@
 				F9C2B91A28B53CD048058C6A48CBB2A0 /* error@2x.png in Sources */,
 				8768E7520D3DC077938F6E098524CD38 /* error@3x.png in Sources */,
 				BC88F7EBE1614C625432290A5010255B /* IHProgressHUD-tvOS-dummy.m in Sources */,
-				839415633944F6B242CFBA8E95C14929 /* IHProgressHUDSwift.swift in Sources */,
+				839415633944F6B242CFBA8E95C14929 /* IHProgressHUD.swift in Sources */,
 				A092DB2DA10D640CB978A9193D80BE6B /* IndefiniteAnimatedView.swift in Sources */,
 				24355A3310459424C0457F3EB184D557 /* info.png in Sources */,
 				EE6D20956CF60F1587AE5136C0E98326 /* info@2x.png in Sources */,
