@@ -1,9 +1,8 @@
 # IHProgressHUD
 
-![Pod Version](https://img.shields.io/cocoapods/v/SVProgressHUD.svg?style=flat)
-![Pod Platform](https://img.shields.io/cocoapods/p/SVProgressHUD.svg?style=flat)
-![Pod License](https://img.shields.io/cocoapods/l/SVProgressHUD.svg?style=flat)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-green.svg?style=flat)](https://github.com/Carthage/Carthage)
+![Pod Version](https://img.shields.io/cocoapods/v/IHProgressHUD.svg?style=flat)
+![Pod Platform](https://img.shields.io/cocoapods/p/IHProgressHUD.svg?style=flat)
+![Pod License](https://img.shields.io/cocoapods/l/IHProgressHUD.svg?style=flat)
 [![CocoaPods compatible](https://img.shields.io/badge/CocoaPods-compatible-green.svg?style=flat)](https://cocoapods.org)
 
 `IHProgressHUD` is a clean and easy-to-use HUD meant to display the progress of an ongoing task on iOS and tvOS.
