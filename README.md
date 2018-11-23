@@ -22,7 +22,7 @@ pod 'IHProgressHUD'
 If you want to use the latest features of `IHProgressHUD` use normal external source dependencies.
 
 ```ruby
-pod 'IHProgressHUD', :git => 'https://github.com/SVProgressHUD/IHProgressHUD.git'
+pod 'IHProgressHUD', :git => 'https://github.com/Swiftify-Corp/IHProgressHUD.git'
 ```
 
 This pulls from the `master` branch directly.
@@ -57,7 +57,7 @@ Using `IHProgressHUD` in your app will usually look as simple as this (using Gra
 IHProgressHUD.show()
 DispatchQueue.global(qos: .default).async(execute: {
 // time-consuming task
-SVProgressHUD.dismiss()
+IHProgressHUD.dismiss()
 })
 ```
 
@@ -124,7 +124,7 @@ class func set(borderWidth width: CGFloat)  // default is 0
 class func set(font: UIFont) // default is UIFont.preferredFont(forTextStyle: .subheadline)
 class func set(foregroundColor color: UIColor) // default is nil                    
 class func set(backgroundColor color: UIColor) // default is nil                        
-class func set(backgroundLayerColor color: UIColor) // default is UIColor.init(white: 0, alpha: 0.4), only used for SVProgressHUDMaskTypeCustom
+class func set(backgroundLayerColor color: UIColor) // default is UIColor.init(white: 0, alpha: 0.4), only used for IHProgressHUDMaskType.custom
 class func set(imageViewSize size: CGSize) // default is 28x28 pt
 class func set(shouldTintImages: Bool) // default is true
 class func set(infoImage image: UIImage) // default is the bundled info image provided by Freepik
@@ -187,9 +187,9 @@ review the guidelines written by [Nicolas Gallagher](https://github.com/necolas)
 
 ## License
 
-`IHProgressHUD` is distributed under the terms and conditions of the [MIT license](https://github.com/SVProgressHUD/SVProgressHUD/blob/master/LICENSE). The success, error and info icons are made by [Freepik](http://www.freepik.com) from [Flaticon](http://www.flaticon.com) and are licensed under [Creative Commons BY 3.0](http://creativecommons.org/licenses/by/3.0/).
+`IHProgressHUD` is distributed under the terms and conditions of the [MIT license](https://github.com/Swiftify-Corp/IHProgressHUD/blob/master/LICENSE). The success, error and info icons are made by [Freepik](http://www.freepik.com) from [Flaticon](http://www.flaticon.com) and are licensed under [Creative Commons BY 3.0](http://creativecommons.org/licenses/by/3.0/).
 
 ## Credits
 
 `IHProgressHUD` is brought to you by [Md Ibrahim Hassan ](mdibrahimhassan@gmail.com)
-If you're using `IHProgressHUD` in your project, attribution would be very appreciated.
+If you're using `IHProgressHUD` in your project, attribution would be very appreciated. This project is converted using [Swiftify ](http://swiftify.com/)
