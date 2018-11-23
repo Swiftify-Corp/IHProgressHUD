@@ -10,13 +10,13 @@
 Pod::Spec.new do |s|
 
   s.name             = 'IHProgressHUD'
-  s.version          = '0.1.0'
+  s.version          = '0.1.2'
   s.summary          = 'A clean and lightweight progress HUD for iOS and tvOS app based on SVProgressHUD, written in Swift.'
   s.license          = 'MIT'
-  s.homepage         = 'https://github.com/Ibrahimhass/IHProgressHUD'
+  s.homepage         = 'https://github.com/Swiftify-Corp/IHProgressHUD/'
   s.swift_version    = "4.2"
   s.author           = { 'mdibrahimhassan@gmail.com' => 'mdibrahimhassan@gmail.com' }
-  s.source           = { :git => 'https://github.com/Ibrahimhass/IHProgressHUD.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/Swiftify-Corp/IHProgressHUD.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/IbrahimH_ss_n'
 
   s.ios.deployment_target = '8.0'
