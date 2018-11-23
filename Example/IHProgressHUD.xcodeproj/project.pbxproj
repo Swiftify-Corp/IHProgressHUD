@@ -7,21 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18EA99C1C48F177ED5945AEE /* Pods_TodayExtensionDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF69313C1B97E2CC9208E3C7 /* Pods_TodayExtensionDemo.framework */; };
 		2A6F27E058C010A83513E1E2 /* Pods_IHProgressHUD_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA31C75F6857AFAFAD4E564 /* Pods_IHProgressHUD_Example.framework */; };
 		39DCA2A21001E1E0D6BA239F /* Pods_tvOSSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACDF15A277C9B34A7ADA2E08 /* Pods_tvOSSample.framework */; };
 		39E140AB8A21CC053E47361F /* Pods_IHProgressHUD_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185EDAF2D385D3C411B6FB38 /* Pods_IHProgressHUD_Tests.framework */; };
-		4AA951F33C289872F97B62A0 /* Pods_TodayExtenionDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7BBCA8A554F66A48C46E35C /* Pods_TodayExtenionDemo.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
-		EDDB949C21A482C400827AC0 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDB948621A47D6100827AC0 /* NotificationCenter.framework */; };
-		EDDB949F21A482C400827AC0 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDB949E21A482C400827AC0 /* TodayViewController.swift */; };
-		EDDB94A221A482C400827AC0 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDDB94A021A482C400827AC0 /* MainInterface.storyboard */; };
-		EDDB94A621A482C400827AC0 /* TodayExtensionDemo.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EDDB949B21A482C400827AC0 /* TodayExtensionDemo.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		EDDB94C521A486BB00827AC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDB94C421A486BB00827AC0 /* AppDelegate.swift */; };
 		EDDB94C721A486BB00827AC0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDB94C621A486BB00827AC0 /* ViewController.swift */; };
 		EDDB94CA21A486BB00827AC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDDB94C821A486BB00827AC0 /* Main.storyboard */; };
@@ -36,13 +30,6 @@
 			remoteGlobalIDString = 607FACCF1AFB9204008FA782;
 			remoteInfo = IHProgressHUD;
 		};
-		EDDB94A421A482C400827AC0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EDDB949A21A482C400827AC0;
-			remoteInfo = TodayExtenionDemo;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,7 +39,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				EDDB94A621A482C400827AC0 /* TodayExtensionDemo.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,7 +68,6 @@
 		B7BBCA8A554F66A48C46E35C /* Pods_TodayExtenionDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodayExtenionDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C711EA3BC4B078896834DCC1 /* Pods-TodayExtensionDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodayExtensionDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-TodayExtensionDemo/Pods-TodayExtensionDemo.release.xcconfig"; sourceTree = "<group>"; };
 		EDDB948621A47D6100827AC0 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		EDDB949B21A482C400827AC0 /* TodayExtensionDemo.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TodayExtensionDemo.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDDB949E21A482C400827AC0 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		EDDB94A121A482C400827AC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		EDDB94A321A482C400827AC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -116,16 +101,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EDDB949821A482C400827AC0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EDDB949C21A482C400827AC0 /* NotificationCenter.framework in Frameworks */,
-				4AA951F33C289872F97B62A0 /* Pods_TodayExtenionDemo.framework in Frameworks */,
-				18EA99C1C48F177ED5945AEE /* Pods_TodayExtensionDemo.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EDDB94BF21A486BB00827AC0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -156,7 +131,6 @@
 			children = (
 				607FACD01AFB9204008FA782 /* IHProgressHUD_Example.app */,
 				607FACE51AFB9204008FA782 /* IHProgressHUD_Tests.xctest */,
-				EDDB949B21A482C400827AC0 /* TodayExtensionDemo.appex */,
 				EDDB94C221A486BB00827AC0 /* tvOSSample.app */,
 			);
 			name = Products;
@@ -286,7 +260,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				EDDB94A521A482C400827AC0 /* PBXTargetDependency */,
 			);
 			name = IHProgressHUD_Example;
 			productName = IHProgressHUD;
@@ -311,24 +284,6 @@
 			productName = Tests;
 			productReference = 607FACE51AFB9204008FA782 /* IHProgressHUD_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		EDDB949A21A482C400827AC0 /* TodayExtensionDemo */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EDDB94A721A482C400827AC0 /* Build configuration list for PBXNativeTarget "TodayExtensionDemo" */;
-			buildPhases = (
-				D23E2D5E13107EAF950DEC6B /* [CP] Check Pods Manifest.lock */,
-				EDDB949721A482C400827AC0 /* Sources */,
-				EDDB949821A482C400827AC0 /* Frameworks */,
-				EDDB949921A482C400827AC0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = TodayExtensionDemo;
-			productName = TodayExtenionDemo;
-			productReference = EDDB949B21A482C400827AC0 /* TodayExtensionDemo.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 		EDDB94C121A486BB00827AC0 /* tvOSSample */ = {
 			isa = PBXNativeTarget;
@@ -368,14 +323,9 @@
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
-					EDDB949A21A482C400827AC0 = {
-						CreatedOnToolsVersion = 10.0;
-						ProvisioningStyle = Automatic;
-					};
 					EDDB94C121A486BB00827AC0 = {
 						CreatedOnToolsVersion = 10.0;
-						DevelopmentTeam = S22NC6S4LN;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -394,7 +344,6 @@
 			targets = (
 				607FACCF1AFB9204008FA782 /* IHProgressHUD_Example */,
 				607FACE41AFB9204008FA782 /* IHProgressHUD_Tests */,
-				EDDB949A21A482C400827AC0 /* TodayExtensionDemo */,
 				EDDB94C121A486BB00827AC0 /* tvOSSample */,
 			);
 		};
@@ -415,14 +364,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EDDB949921A482C400827AC0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EDDB94A221A482C400827AC0 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,24 +451,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D23E2D5E13107EAF950DEC6B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TodayExtensionDemo-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E5718D008E0A5B0ED40693E6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -566,14 +489,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EDDB949721A482C400827AC0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EDDB949F21A482C400827AC0 /* TodayViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EDDB94BE21A486BB00827AC0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -590,11 +505,6 @@
 			isa = PBXTargetDependency;
 			target = 607FACCF1AFB9204008FA782 /* IHProgressHUD_Example */;
 			targetProxy = 607FACE61AFB9204008FA782 /* PBXContainerItemProxy */;
-		};
-		EDDB94A521A482C400827AC0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EDDB949A21A482C400827AC0 /* TodayExtensionDemo */;
-			targetProxy = EDDB94A421A482C400827AC0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -807,63 +717,6 @@
 			};
 			name = Release;
 		};
-		EDDB94A821A482C400827AC0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4BB99BA34AFC23DB3D5F4F7 /* Pods-TodayExtensionDemo.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = TodayExtensionDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.IHProgressHUD-Example.TodayExtenionDemo";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		EDDB94A921A482C400827AC0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C711EA3BC4B078896834DCC1 /* Pods-TodayExtensionDemo.release.xcconfig */;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = TodayExtensionDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.IHProgressHUD-Example.TodayExtenionDemo";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		EDDB94CE21A486BD00827AC0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F076B2AC5B81425D022F2EE7 /* Pods-tvOSSample.debug.xcconfig */;
@@ -878,9 +731,9 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = S22NC6S4LN;
+				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = tvOSSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -888,6 +741,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mdibrahimhassan.corp.tvOSSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 4.2;
@@ -910,14 +764,15 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S22NC6S4LN;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = tvOSSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mdibrahimhassan.corp.tvOSSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -951,15 +806,6 @@
 			buildConfigurations = (
 				607FACF31AFB9204008FA782 /* Debug */,
 				607FACF41AFB9204008FA782 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EDDB94A721A482C400827AC0 /* Build configuration list for PBXNativeTarget "TodayExtensionDemo" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EDDB94A821A482C400827AC0 /* Debug */,
-				EDDB94A921A482C400827AC0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
