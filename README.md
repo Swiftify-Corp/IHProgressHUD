@@ -225,4 +225,4 @@ review the guidelines written by [Nicolas Gallagher](https://github.com/necolas)
 ## Credits
 
 `IHProgressHUD` is brought to you by [Md Ibrahim Hassan ](mdibrahimhassan@gmail.com)
-If you're using `IHProgressHUD` in your project, attribution would be very appreciated. This project is converted with the help of [Swiftify ](https://objectivec2swift.com/).
+If you're using `IHProgressHUD` in your project, attribution would be very appreciated. This project is converted with the help of [Swiftify](https://objectivec2swift.com/). The conversion process can be found [here](https://medium.com/@mdibrahimhassan/27be1817b7f6).
