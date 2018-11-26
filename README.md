@@ -5,7 +5,7 @@
 ![Pod License](https://img.shields.io/cocoapods/l/IHProgressHUD.svg?style=flat)
 [![CocoaPods compatible](https://img.shields.io/badge/CocoaPods-compatible-green.svg?style=flat)](https://cocoapods.org)
 
-`IHProgressHUD` is a clean and easy-to-use HUD meant to display the progress of an ongoing task on iOS and tvOS. `IHProgressHUD` is based on [SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD) and ported to Swift with the help of [Swiftify](https://medium.com/@mdibrahimhassan/27be1817b7f6),
+`IHProgressHUD` is a clean and easy-to-use HUD meant to display the progress of an ongoing task on iOS and tvOS. `IHProgressHUD` is based on [SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD) and ported to Swift with the [help of Swiftify](https://medium.com/@mdibrahimhassan/27be1817b7f6),
 with additional improvements like added thread safety and not using complier flag for use in iOS App Extension. 
 
 
@@ -225,4 +225,4 @@ review the guidelines written by [Nicolas Gallagher](https://github.com/necolas)
 ## Credits
 
 `IHProgressHUD` is brought to you by [Md Ibrahim Hassan ](mdibrahimhassan@gmail.com)
-If you're using `IHProgressHUD` in your project, attribution would be very appreciated. This project is converted using [Swiftify ](http://swiftify.com/).
+If you're using `IHProgressHUD` in your project, attribution would be very appreciated. This project is converted with the help of [Swiftify ](https://objectivec2swift.com/).
