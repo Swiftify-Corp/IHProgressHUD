@@ -5,7 +5,9 @@
 ![Pod License](https://img.shields.io/cocoapods/l/IHProgressHUD.svg?style=flat)
 [![CocoaPods compatible](https://img.shields.io/badge/CocoaPods-compatible-green.svg?style=flat)](https://cocoapods.org)
 
-`IHProgressHUD` is a clean and easy-to-use HUD meant to display the progress of an ongoing task on iOS and tvOS.
+`IHProgressHUD` is a clean and easy-to-use HUD meant to display the progress of an ongoing task on iOS and tvOS. `IHProgressHUD` is based on [SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD) and ported to Swift with the help of [Swiftify](https://medium.com/@mdibrahimhassan/27be1817b7f6),
+with additional improvements like added thread safety and not using complier flag for use in iOS App Extension. 
+
 
 ![IHProgressHUD](http://f.cl.ly/items/2G1F1Z0M0k0h2U3V1p39/SVProgressHUD.gif)
 
@@ -116,31 +118,57 @@ class func showImage(_ image: UIImage, status: String?)
 
 ```Swift
 class func set(defaultStyle style: IHProgressHUDStyle) // default is IHProgressHUDStyle.light
+
 class func set(defaultMaskType maskType: IHProgressHUDMaskType) // default is IHProgressHUDMaskType.none
+
 class func set(defaultAnimationType type: IHProgressHUDAnimationType) // default is IHProgressHUDAnimationType.flat
+
 class func set(containerView: UIView?) // default is window level
+
 class func set(minimumSize: CGSize) // default is CGSize.zero, can be used to avoid resizing
+
 class func set(ringThickness: CGFloat) // default is 2 pt
+
 class func set(ringRadius : CGFloat) // default is 18 pt
+
 class func setRing(noTextRingRadius radius: CGFloat) // default is 24 pt
+
 class func set(cornerRadius: CGFloat) // default is 14 pt
+
 class func set(borderColor color : UIColor) // default is nil
+
 class func set(borderWidth width: CGFloat)  // default is 0
+
 class func set(font: UIFont) // default is UIFont.preferredFont(forTextStyle: .subheadline)
-class func set(foregroundColor color: UIColor) // default is nil                    
-class func set(backgroundColor color: UIColor) // default is nil                        
+
+class func set(foregroundColor color: UIColor) // default is nil
+
+class func set(backgroundColor color: UIColor) // default is nil
+
 class func set(backgroundLayerColor color: UIColor) // default is UIColor.init(white: 0, alpha: 0.4), only used for IHProgressHUDMaskType.custom
+
 class func set(imageViewSize size: CGSize) // default is 28x28 pt
+
 class func set(shouldTintImages: Bool) // default is true
+
 class func set(infoImage image: UIImage) // default is the bundled info image provided by Freepik
+
 class func setSuccessImage(successImage image: UIImage) // default is bundled success image from Freepik
+
 class func setErrorImage(errorImage image: UIImage) // default is bundled error image from Freepik
-class func set(viewForExtension view: UIView) // default is nil, only used for App Extensions
+
+class func set(viewForExtension view: UIView) // default is nil, only used for App Extension
+
 class func set(graceTimeInterval interval: TimeInterval) // default is 5.0 seconds
+
 class func set(maximumDismissTimeInterval interval: TimeInterval) // default is TimeInterval(CGFloat.infinity)
+
 class func setFadeInAnimationDuration(fadeInAnimationDuration duration: TimeInterval) // default is 0.15 seconds
+
 class func setFadeOutAnimationDuration(fadeOutAnimationDuration duration: TimeInterval) // default is 0.15 seconds
+
 class func setMaxSupportedWindowLevel(maxSupportedWindowLevel windowLevel: UIWindow.Level) // default is UIWindowLevelNormal
+
 class func setHapticsEnabled(hapticsEnabled: Bool) // default is NO
 ```
 
@@ -197,4 +225,4 @@ review the guidelines written by [Nicolas Gallagher](https://github.com/necolas)
 ## Credits
 
 `IHProgressHUD` is brought to you by [Md Ibrahim Hassan ](mdibrahimhassan@gmail.com)
-If you're using `IHProgressHUD` in your project, attribution would be very appreciated. This project is converted using [Swiftify ](http://swiftify.com/)
+If you're using `IHProgressHUD` in your project, attribution would be very appreciated. This project is converted using [Swiftify ](http://swiftify.com/).
