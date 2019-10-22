@@ -26,6 +26,8 @@
 		839415633944F6B242CFBA8E95C14929 /* IHProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F37AA8046240E3776AB022427433464 /* IHProgressHUD.swift */; };
 		902D354A9FF333F509A5C6E95FEB4ECF /* Pods-TodayExtensionDemo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 925243C4E8704C2D7E3176ADBD946A29 /* Pods-TodayExtensionDemo-dummy.m */; };
 		951B41EA23F9EF14FF70489B4B36E8D8 /* RadialGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7033FE511ECA25AF94D3882F2759F2 /* RadialGradientLayer.swift */; };
+		9CDE49D6235F396000BF72CC /* IHProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE49D5235F395F00BF72CC /* IHProgressHUD.bundle */; };
+		9CDE49D8235F3A1600BF72CC /* IHProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE49D5235F395F00BF72CC /* IHProgressHUD.bundle */; };
 		A092DB2DA10D640CB978A9193D80BE6B /* IndefiniteAnimatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2204C9C6243AA601B6919AC1B606B62A /* IndefiniteAnimatedView.swift */; };
 		BC88F7EBE1614C625432290A5010255B /* IHProgressHUD-tvOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 621319EF5A0F2DC38E3A54DA2F819C7D /* IHProgressHUD-tvOS-dummy.m */; };
 		C32C31263AF1BEB436AF5501521363FF /* IHProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F37AA8046240E3776AB022427433464 /* IHProgressHUD.swift */; };
@@ -115,18 +117,7 @@
 		96B69EC438AF8ED15E7230B38684CE91 /* Pods-IHProgressHUD_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-IHProgressHUD_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		9A3BDC315612F2E1F1610F0D2C5ED84A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		9BAE832C14D4BCF400C42AD5C1C38BB6 /* IHProgressHUD.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = IHProgressHUD.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9C20655C233BD09C00BB98C8 /* angle-mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "angle-mask.png"; sourceTree = "<group>"; };
-		9C20655D233BD09C00BB98C8 /* error@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@3x.png"; sourceTree = "<group>"; };
-		9C20655E233BD09C00BB98C8 /* success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = success.png; sourceTree = "<group>"; };
-		9C20655F233BD09C00BB98C8 /* info@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info@3x.png"; sourceTree = "<group>"; };
-		9C206560233BD09C00BB98C8 /* angle-mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "angle-mask@2x.png"; sourceTree = "<group>"; };
-		9C206561233BD09C00BB98C8 /* success@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@3x.png"; sourceTree = "<group>"; };
-		9C206562233BD09C00BB98C8 /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error.png; sourceTree = "<group>"; };
-		9C206563233BD09C00BB98C8 /* angle-mask@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "angle-mask@3x.png"; sourceTree = "<group>"; };
-		9C206564233BD09C00BB98C8 /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@2x.png"; sourceTree = "<group>"; };
-		9C206565233BD09C00BB98C8 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
-		9C206566233BD09C00BB98C8 /* success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@2x.png"; sourceTree = "<group>"; };
-		9C206567233BD09C00BB98C8 /* info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info@2x.png"; sourceTree = "<group>"; };
+		9CDE49D5235F395F00BF72CC /* IHProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = IHProgressHUD.bundle; path = ../IHProgressHUD.bundle; sourceTree = "<group>"; };
 		A60942F56D8C4F1CFBDAA2D9A89E08BB /* Pods_IHProgressHUD_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IHProgressHUD_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B065E157158378C4419DB60D418C7ECC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B44D88877A2BEADB5DAB994538B28568 /* IHProgressHUD-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "IHProgressHUD-iOS-umbrella.h"; sourceTree = "<group>"; };
@@ -273,7 +264,7 @@
 				2204C9C6243AA601B6919AC1B606B62A /* IndefiniteAnimatedView.swift */,
 				D8F436A6054816BC8C8E6EC18989917C /* ProgressAnimatedView.swift */,
 				BD7033FE511ECA25AF94D3882F2759F2 /* RadialGradientLayer.swift */,
-				E01AA91194CA7ECE1A18270BB3F4463B /* IHProgressHUD.bundle */,
+				9C95F0C4235F36B200222BB3 /* Resourses */,
 				4B842194EC1A40734E05A829AE925CEE /* Pod */,
 				97E10C7DA16C9A855580B70BE5714E71 /* Support Files */,
 			);
@@ -301,6 +292,15 @@
 			path = "Example/Pods/Target Support Files/IHProgressHUD-iOS";
 			sourceTree = "<group>";
 		};
+		9C95F0C4235F36B200222BB3 /* Resourses */ = {
+			isa = PBXGroup;
+			children = (
+				9CDE49D5235F395F00BF72CC /* IHProgressHUD.bundle */,
+			);
+			name = Resourses;
+			path = IHProgressHUD/Classes/Resourses;
+			sourceTree = "<group>";
+		};
 		A2ACB2AAA62094C1993A9D024E07D933 /* Pods-IHProgressHUD_Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,26 +326,6 @@
 				CAAE8ABDA28D0055E3D371C4779EF228 /* QuartzCore.framework */,
 			);
 			name = tvOS;
-			sourceTree = "<group>";
-		};
-		E01AA91194CA7ECE1A18270BB3F4463B /* IHProgressHUD.bundle */ = {
-			isa = PBXGroup;
-			children = (
-				9C20655C233BD09C00BB98C8 /* angle-mask.png */,
-				9C206560233BD09C00BB98C8 /* angle-mask@2x.png */,
-				9C206563233BD09C00BB98C8 /* angle-mask@3x.png */,
-				9C206562233BD09C00BB98C8 /* error.png */,
-				9C206564233BD09C00BB98C8 /* error@2x.png */,
-				9C20655D233BD09C00BB98C8 /* error@3x.png */,
-				9C206565233BD09C00BB98C8 /* info.png */,
-				9C206567233BD09C00BB98C8 /* info@2x.png */,
-				9C20655F233BD09C00BB98C8 /* info@3x.png */,
-				9C20655E233BD09C00BB98C8 /* success.png */,
-				9C206566233BD09C00BB98C8 /* success@2x.png */,
-				9C206561233BD09C00BB98C8 /* success@3x.png */,
-			);
-			name = IHProgressHUD.bundle;
-			path = IHProgressHUD/Classes/IHProgressHUD.bundle;
 			sourceTree = "<group>";
 		};
 		E0FD825B313AC02B3A3BDDA64F251BEB /* Targets Support Files */ = {
@@ -473,6 +453,7 @@
 				DE6284E91F2906310695EC93FA9CD8E2 /* Sources */,
 				DC1926C054747661F4743DC349BF92D5 /* Frameworks */,
 				4249B491ECE76C0FC243D5D016D5F289 /* Headers */,
+				9CDE49D7235F3A1100BF72CC /* Resources */,
 			);
 			buildRules = (
 			);
@@ -526,6 +507,7 @@
 				122F165A4D95330F7436C1F9975BD954 /* Sources */,
 				0D13F5BC5943BB9EB8118539C575A45E /* Frameworks */,
 				5489A26A63E70B7B28DB00F22ED4E434 /* Headers */,
+				9C2E97EB235F390F00FC7460 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -580,6 +562,14 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
+				TargetAttributes = {
+					0AC8445264CC7C08EB30518E1544A030 = {
+						LastSwiftMigration = 1110;
+					};
+					8AC424F13936CB0AB8E17867DD38AD1F = {
+						LastSwiftMigration = 1110;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -603,6 +593,25 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9C2E97EB235F390F00FC7460 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CDE49D6235F396000BF72CC /* IHProgressHUD.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9CDE49D7235F3A1100BF72CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CDE49D8235F3A1600BF72CC /* IHProgressHUD.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		06548CA3B071FC94B5D7E9D97EBD6C41 /* Sources */ = {
@@ -752,7 +761,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -925,7 +934,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1054,7 +1063,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1145,7 +1154,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
