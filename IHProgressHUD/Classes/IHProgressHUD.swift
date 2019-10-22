@@ -1258,7 +1258,13 @@ extension IHProgressHUD {
     }
     
     private func loadImageBundle(named imageName:String) -> UIImage? {
-        let imageBundle = Bundle.init(for: IHProgressHUD.self)
+        var imageBundle = Bundle.init(for: IHProgressHUD.self)
+        if let resourcePath = imageBundle.path(forResource: "IHProgressHUD", ofType: "bundle") {
+            if let resourcesBundle = Bundle(path: resourcePath) {
+                imageBundle = resourcesBundle
+            }
+        }
+        
         return (UIImage(named: imageName, in: imageBundle, compatibleWith: nil))
     }
 }
