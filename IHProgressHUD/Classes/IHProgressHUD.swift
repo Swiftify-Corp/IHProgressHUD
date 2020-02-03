@@ -504,9 +504,9 @@ public class IHProgressHUD : UIView {
                 if image.renderingMode != UIImage.RenderingMode.alwaysTemplate {
                     strongSelf.getImageView().image = image.withRenderingMode(.alwaysTemplate)
                     strongSelf.getImageView().tintColor = strongSelf.foreGroundColorForStyle()
-                } else {
-                    strongSelf.getImageView().image = image
                 }
+            } else {
+                strongSelf.getImageView().image = image
             }
             strongSelf.getImageView().isHidden = false
             
