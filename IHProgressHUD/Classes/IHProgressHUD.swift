@@ -47,8 +47,8 @@ private let IHProgressHUDLabelSpacing: CGFloat = 8.0
 public class IHProgressHUD : UIView {
     
     static var isNotAppExtension = true
-
-    private var  defaultStyle = IHProgressHUDStyle.light
+    
+    private var defaultStyle = IHProgressHUDStyle.light
     private var defaultMaskType = IHProgressHUDMaskType.none
     private var defaultAnimationType = IHProgressHUDAnimationType.flat
     private var containerView: UIView?
@@ -94,11 +94,11 @@ public class IHProgressHUD : UIView {
     @available(iOS 10.0, *)
     private var hapticGenerator: UINotificationFeedbackGenerator? {
         get {
-            if hapticsEnabled == true {
-                return UINotificationFeedbackGenerator()
-            } else {
-                return nil
-            }
+        if hapticsEnabled == true {
+        return UINotificationFeedbackGenerator()
+        } else {
+        return nil
+        }
         }
     }
     #endif
@@ -150,125 +150,125 @@ public class IHProgressHUD : UIView {
         var localInstance : IHProgressHUD?
         if Thread.current.isMainThread {
             if IHProgressHUD.isNotAppExtension {
-            if let window = UIApplication.shared.delegate?.window {
-                localInstance = IHProgressHUD.init(frame: window?.bounds ?? CGRect.zero)
-            } else {
-                localInstance = IHProgressHUD()
-                }
-            }
-            else {
-            localInstance = IHProgressHUD.init(frame: UIScreen.main.bounds)
-            }
-        } else {
-            DispatchQueue.main.sync {
-                if IHProgressHUD.isNotAppExtension {
                 if let window = UIApplication.shared.delegate?.window {
                     localInstance = IHProgressHUD.init(frame: window?.bounds ?? CGRect.zero)
                 } else {
                     localInstance = IHProgressHUD()
+                }
+            }
+            else {
+                localInstance = IHProgressHUD.init(frame: UIScreen.main.bounds)
+            }
+        } else {
+            DispatchQueue.main.sync {
+                if IHProgressHUD.isNotAppExtension {
+                    if let window = UIApplication.shared.delegate?.window {
+                        localInstance = IHProgressHUD.init(frame: window?.bounds ?? CGRect.zero)
+                    } else {
+                        localInstance = IHProgressHUD()
                     }
                 } else {
-                localInstance = IHProgressHUD.init(frame: UIScreen.main.bounds)
+                    localInstance = IHProgressHUD.init(frame: UIScreen.main.bounds)
                 }
             }
         }
         return localInstance!
     }()
-
+    
     // MARK :- Setters
     
     private func showProgress(progress: Float, status: String?) {
         OperationQueue.main.addOperation({ [weak self] in
             guard let strongSelf = self else { return }
-                if strongSelf.fadeOutTimer != nil {
-                    strongSelf.activityCount = 0
+            if strongSelf.fadeOutTimer != nil {
+                strongSelf.activityCount = 0
+            }
+            
+            // Stop timer
+            strongSelf.setFadeOut(timer: nil)
+            strongSelf.setGrace(timer: nil)
+            
+            // Update / Check view hierarchy to ensure the HUD is visible
+            strongSelf.updateViewHierarchy()
+            
+            // Reset imageView and fadeout timer if an image is currently displayed
+            strongSelf.getImageView().isHidden = true
+            strongSelf.getImageView().image = nil
+            
+            // Update text and set progress to the given value
+            strongSelf.getStatusLabel().isHidden = (status?.count ?? 0) == 0
+            strongSelf.getStatusLabel().text = status
+            strongSelf.progress = progress
+            
+            // Choose the "right" indicator depending on the progress
+            if progress >= 0 {
+                // Cancel the indefiniteAnimatedView, then show the ringLayer
+                strongSelf.cancelIndefiniteAnimatedViewAnimation()
+                
+                // Add ring to HUD
+                if strongSelf.getRingView().superview == nil {
+                    strongSelf.getHudView().contentView.addSubview(strongSelf.getRingView())
+                }
+                if strongSelf.getBackgroundRingView().superview == nil {
+                    strongSelf.getHudView().contentView.addSubview(strongSelf.getBackgroundRingView())
                 }
                 
-                // Stop timer
-                strongSelf.setFadeOut(timer: nil)
-                strongSelf.setGrace(timer: nil)
+                // Set progress animated
+                CATransaction.begin()
+                CATransaction.setDisableActions(true)
+                strongSelf.getRingView().set(strokeEnd: CGFloat(progress))
+                //                strongSelf.ringView.strokeEnd = progress;
+                CATransaction.commit()
                 
-                // Update / Check view hierarchy to ensure the HUD is visible
-                strongSelf.updateViewHierarchy()
-                
-                // Reset imageView and fadeout timer if an image is currently displayed
-                strongSelf.getImageView().isHidden = true
-                strongSelf.getImageView().image = nil
-                
-                // Update text and set progress to the given value
-                strongSelf.getStatusLabel().isHidden = (status?.count ?? 0) == 0
-                strongSelf.getStatusLabel().text = status
-                strongSelf.progress = progress
-                
-                // Choose the "right" indicator depending on the progress
-                if progress >= 0 {
-                    // Cancel the indefiniteAnimatedView, then show the ringLayer
-                    strongSelf.cancelIndefiniteAnimatedViewAnimation()
-                    
-                    // Add ring to HUD
-                    if strongSelf.getRingView().superview == nil {
-                        strongSelf.getHudView().contentView.addSubview(strongSelf.getRingView())
-                    }
-                    if strongSelf.getBackgroundRingView().superview == nil {
-                        strongSelf.getHudView().contentView.addSubview(strongSelf.getBackgroundRingView())
-                    }
-                    
-                    // Set progress animated
-                    CATransaction.begin()
-                    CATransaction.setDisableActions(true)
-                    strongSelf.getRingView().set(strokeEnd: CGFloat(progress))
-                    //                strongSelf.ringView.strokeEnd = progress;
-                    CATransaction.commit()
-                    
-                    // Update the activity count
-                    if progress == 0 {
-                        strongSelf.activityCount += 1
-                    }
-                } else {
-                    // Cancel the ringLayer animation, then show the indefiniteAnimatedView
-                    strongSelf.cancelRingLayerAnimation()
-                    
-                    // Add indefiniteAnimatedView to HUD
-                    strongSelf.getHudView().contentView.addSubview(strongSelf.getIndefiniteAnimatedView())
-                    
-                    if strongSelf.defaultAnimationType == .native {
-                        strongSelf.getIndefiniteAnimatedView().stopActivityIndicator()
-                    }
-                    
-                    // Update the activity count
+                // Update the activity count
+                if progress == 0 {
                     strongSelf.activityCount += 1
                 }
+            } else {
+                // Cancel the ringLayer animation, then show the indefiniteAnimatedView
+                strongSelf.cancelRingLayerAnimation()
                 
-                // Fade in delayed if a grace time is set
-                if strongSelf.graceTimeInterval > 0.0 && strongSelf.getBackGroundView().alpha == 0.0 {
-                    let timer = Timer(timeInterval: strongSelf.graceTimeInterval, target: strongSelf, selector: #selector(strongSelf.fadeIn(_:)), userInfo: nil, repeats: false)
-                    strongSelf.setGrace(timer: timer)
-                    if let aTimer = strongSelf.graceTimer {
-                        RunLoop.main.add(aTimer, forMode: .common)
-                    }
-                } else {
-                    strongSelf.fadeIn(nil)
+                // Add indefiniteAnimatedView to HUD
+                strongSelf.getHudView().contentView.addSubview(strongSelf.getIndefiniteAnimatedView())
+                
+                if strongSelf.defaultAnimationType == .native {
+                    strongSelf.getIndefiniteAnimatedView().stopActivityIndicator()
                 }
                 
-                // Tell the Haptics Generator to prepare for feedback, which may come soon
+                // Update the activity count
+                strongSelf.activityCount += 1
+            }
+            
+            // Fade in delayed if a grace time is set
+            if strongSelf.graceTimeInterval > 0.0 && strongSelf.getBackGroundView().alpha == 0.0 {
+                let timer = Timer(timeInterval: strongSelf.graceTimeInterval, target: strongSelf, selector: #selector(strongSelf.fadeIn(_:)), userInfo: nil, repeats: false)
+                strongSelf.setGrace(timer: timer)
+                if let aTimer = strongSelf.graceTimer {
+                    RunLoop.main.add(aTimer, forMode: .common)
+                }
+            } else {
+                strongSelf.fadeIn(nil)
+            }
+            
+            // Tell the Haptics Generator to prepare for feedback, which may come soon
             #if os(iOS)
-                if #available(iOS 10.0, *) {
-                    strongSelf.hapticGenerator?.prepare()
-                }
+            if #available(iOS 10.0, *) {
+                strongSelf.hapticGenerator?.prepare()
+            }
             #endif
         })
     }
     
     @objc private func controlViewDidReceiveTouchEvent(_ sender: Any?, for event: UIEvent?) {
         NotificationCenter.default.post(name: NotificationName.IHProgressHUDDidReceiveTouchEvent.getNotificationName(), object: self, userInfo: notificationUserInfo())
-
+        
         if let touchLocation = event?.allTouches?.first?.location(in: self) {
             if getHudView().frame.contains(touchLocation) {
                 NotificationCenter.default.post(name:
                     NotificationName.IHProgressHUDDidTouchDownInside.getNotificationName(), object: self, userInfo: notificationUserInfo())
             }
         }
-
+        
     }
     
     func notificationUserInfo() -> [String : Any]? {
@@ -277,7 +277,7 @@ public class IHProgressHUD : UIView {
         }
         return nil
     }
-
+    
     
     @objc private func fadeIn(_ object: AnyObject?) {
         updateHUDFrame()
@@ -315,7 +315,7 @@ public class IHProgressHUD : UIView {
                 NotificationCenter.default.post(name: NotificationName.IHProgressHUDDidAppear.getNotificationName(), object: self, userInfo: self.notificationUserInfo())
                 
                 // Update accessibility
-
+                
                 UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: nil)
                 
                 UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: self.statusLabel?.text)
@@ -364,37 +364,59 @@ public class IHProgressHUD : UIView {
         var statusBarFrame = CGRect.zero
         
         #if os(iOS) // notAppExtension + iOS
+        var orientation = UIInterfaceOrientation.portrait
         if IHProgressHUD.isNotAppExtension {
-            if let appDelegate = UIApplication.shared.delegate,
-                let window : UIWindow = appDelegate.window! {
-                frame = window.bounds
-            }
-            var orientation = UIApplication.shared.statusBarOrientation
-
-        if frame.width > frame.height {
-            orientation = .landscapeLeft
-        } else {
-            orientation = .portrait
-        }
-        if let notificationData = notification {
-            let keyboardInfo = notificationData.userInfo
-            if let keyboardFrame: NSValue = keyboardInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-                let keyboardFrame: CGRect = keyboardFrame.cgRectValue
-                if (notification?.name.rawValue == UIResponder.keyboardWillShowNotification.rawValue || notification?.name.rawValue == UIResponder.keyboardDidShowNotification.rawValue) {
-                    keyboardHeight = keyboardFrame.width
-                    if orientation.isPortrait {
-                        keyboardHeight = keyboardFrame.height
+            if #available(iOS 13.0, *) {
+                var rootVC:UIViewController? = nil
+                for scene in UIApplication.shared.connectedScenes {
+                    if scene.activationState == .foregroundActive {
+                        rootVC = ((scene as? UIWindowScene)!.delegate as! UIWindowSceneDelegate).window!!.rootViewController
+                        break
                     }
                 }
+                frame = rootVC?.view.window?.bounds ?? UIScreen.main.bounds
+                if let or = rootVC?.view.window?.windowScene?.interfaceOrientation {
+                    orientation = or
+                }
+                if let statFrame = rootVC?.view.window?.windowScene?.statusBarManager?.statusBarFrame {
+                     statusBarFrame = statFrame
+                }
+            } else {
+                // Fallback on earlier versions
+                if let appDelegate = UIApplication.shared.delegate,
+                    let window : UIWindow = appDelegate.window! {
+                    frame = window.bounds
+                }
+                orientation = UIApplication.shared.statusBarOrientation
+                 statusBarFrame = UIApplication.shared.statusBarFrame
             }
-            if let aDuration: Double = keyboardInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double {
-                animationDuration = aDuration
+            
+            
+            
+            if frame.width > frame.height {
+                orientation = .landscapeLeft
+            } else {
+                orientation = .portrait
             }
-        } else {
-            keyboardHeight = getVisibleKeyboardHeight()
-        }
-        statusBarFrame = UIApplication.shared.statusBarFrame
-        updateMotionEffectForOrientation(orientation)
+            if let notificationData = notification {
+                let keyboardInfo = notificationData.userInfo
+                if let keyboardFrame: NSValue = keyboardInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+                    let keyboardFrame: CGRect = keyboardFrame.cgRectValue
+                    if (notification?.name.rawValue == UIResponder.keyboardWillShowNotification.rawValue || notification?.name.rawValue == UIResponder.keyboardDidShowNotification.rawValue) {
+                        keyboardHeight = keyboardFrame.width
+                        if orientation.isPortrait {
+                            keyboardHeight = keyboardFrame.height
+                        }
+                    }
+                }
+                if let aDuration: Double = keyboardInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double {
+                    animationDuration = aDuration
+                }
+            } else {
+                keyboardHeight = getVisibleKeyboardHeight()
+            }
+           
+            updateMotionEffectForOrientation(orientation)
         }
         #endif
         
@@ -431,25 +453,25 @@ public class IHProgressHUD : UIView {
             move(to: newCenter, rotateAngle: rotateAngle)
         }
     }
-
+    
     private func updateViewHierarchy() {
         // Add the overlay to the application window if necessary
         if getControlView().superview == nil {
             if containerView != nil {
                 self.containerView!.addSubview(getControlView())
-//                self.frame = containerView!.frame
+                //                self.frame = containerView!.frame
             } else {
                 if IHProgressHUD.isNotAppExtension {
-                if self.containerView != nil {
-                    containerView?.addSubview(getControlView())
-                } else {
-                    getFrontWindow()?.addSubview(getControlView())
+                    if self.containerView != nil {
+                        containerView?.addSubview(getControlView())
+                    } else {
+                        getFrontWindow()?.addSubview(getControlView())
                     }
                 }
                 else {
-                // If IHProgressHUD is used inside an app extension add it to the given view
-                if viewForExtension != nil {
-                     viewForExtension!.addSubview(getControlView())
+                    // If IHProgressHUD is used inside an app extension add it to the given view
+                    if viewForExtension != nil {
+                        viewForExtension!.addSubview(getControlView())
                     }
                 }
             }
@@ -457,7 +479,7 @@ public class IHProgressHUD : UIView {
             // The HUD is already on screen, but maybe not in front. Therefore
             // ensure that overlay will be on top of rootViewController (which may
             // be changed during runtime).
-                getControlView().superview?.bringSubviewToFront(getControlView())
+            getControlView().superview?.bringSubviewToFront(getControlView())
         }
         
         // Add self to the overlay view
@@ -465,12 +487,12 @@ public class IHProgressHUD : UIView {
             getControlView().addSubview(self)
         }
     }
-
+    
     private func cancelIndefiniteAnimatedViewAnimation(){
         self.indefiniteAnimatedView?.stopActivityIndicator()
         self.indefiniteAnimatedView?.removeFromSuperview()
     }
-
+    
     private func cancelRingLayerAnimation() {
         // Animate value update, stop animation
         CATransaction.begin()
@@ -528,81 +550,94 @@ public class IHProgressHUD : UIView {
     private func dismissWithDelay(_ delay: TimeInterval, completion: (() -> Void)?) {
         OperationQueue.main.addOperation({ [weak self] in
             guard let strongSelf = self else { return }
-                // Stop timer
-                strongSelf.setGrace(timer: nil)
-                // Post notification to inform user
-                NotificationCenter.default.post(name: NotificationName.IHProgressHUDWillDisappear.getNotificationName(), object: nil, userInfo: strongSelf.notificationUserInfo())
+            // Stop timer
+            strongSelf.setGrace(timer: nil)
+            // Post notification to inform user
+            NotificationCenter.default.post(name: NotificationName.IHProgressHUDWillDisappear.getNotificationName(), object: nil, userInfo: strongSelf.notificationUserInfo())
+            
+            // Reset activity count
+            strongSelf.activityCount = 0
+            
+            let animationsBlock: () -> Void = {
+                // Shrink HUD a little to make a nice disappear animation
+                strongSelf.getHudView().transform = strongSelf.getHudView().transform.scaledBy(x: 1 / 1.3, y: 1 / 1.3)
                 
-                // Reset activity count
-                strongSelf.activityCount = 0
-                
-                let animationsBlock: () -> Void = {
-                    // Shrink HUD a little to make a nice disappear animation
-                    strongSelf.getHudView().transform = strongSelf.getHudView().transform.scaledBy(x: 1 / 1.3, y: 1 / 1.3)
+                // Fade out all effects (colors, blur, etc.)
+                strongSelf.fadeOutEffects()
+            }
+            
+            let completionBlock: (() -> Void) = {
+                // Check if we really achieved to dismiss the HUD (<=> alpha values are applied)
+                // and the change of these values has not been cancelled in between e.g. due to a new show
+                if strongSelf.getBackGroundView().alpha == 0.0 {
+                    // Clean up view hierarchy (overlays)
+                    strongSelf.getControlView().removeFromSuperview()
+                    strongSelf.getBackGroundView().removeFromSuperview()
+                    strongSelf.getHudView().removeFromSuperview()
+                    strongSelf.removeFromSuperview()
                     
-                    // Fade out all effects (colors, blur, etc.)
-                    strongSelf.fadeOutEffects()
-                }
-                
-                let completionBlock: (() -> Void) = {
-                    // Check if we really achieved to dismiss the HUD (<=> alpha values are applied)
-                    // and the change of these values has not been cancelled in between e.g. due to a new show
-                    if strongSelf.getBackGroundView().alpha == 0.0 {
-                        // Clean up view hierarchy (overlays)
-                        strongSelf.getControlView().removeFromSuperview()
-                        strongSelf.getBackGroundView().removeFromSuperview()
-                        strongSelf.getHudView().removeFromSuperview()
-                        strongSelf.removeFromSuperview()
-                        
-                        // Reset progress and cancel any running animation
-                        strongSelf.progress = Float(IHProgressHUDUndefinedProgress)
-                        strongSelf.cancelRingLayerAnimation()
-                        strongSelf.cancelIndefiniteAnimatedViewAnimation()
-                        
-                        // Remove observer <=> we do not have to handle orientation changes etc.
-                            NotificationCenter.default.removeObserver(strongSelf)
-                        // Post notification to inform user
-                        //IHProgressHUDDidDisappearNotification
-                        NotificationCenter.default.post(name: NotificationName.IHProgressHUDDidDisappear.getNotificationName(), object: strongSelf, userInfo: strongSelf.notificationUserInfo())
-                        
-                        // Tell the rootViewController to update the StatusBar appearance
-                        #if os(iOS)
-                        if IHProgressHUD.isNotAppExtension {
-                        let rootController: UIViewController? = UIApplication.shared.keyWindow?.rootViewController
-                        rootController?.setNeedsStatusBarAppearanceUpdate()
+                    // Reset progress and cancel any running animation
+                    strongSelf.progress = Float(IHProgressHUDUndefinedProgress)
+                    strongSelf.cancelRingLayerAnimation()
+                    strongSelf.cancelIndefiniteAnimatedViewAnimation()
+                    
+                    // Remove observer <=> we do not have to handle orientation changes etc.
+                    NotificationCenter.default.removeObserver(strongSelf)
+                    // Post notification to inform user
+                    //IHProgressHUDDidDisappearNotification
+                    NotificationCenter.default.post(name: NotificationName.IHProgressHUDDidDisappear.getNotificationName(), object: strongSelf, userInfo: strongSelf.notificationUserInfo())
+                    
+                    // Tell the rootViewController to update the StatusBar appearance
+                    #if os(iOS)
+                    if IHProgressHUD.isNotAppExtension {
+                        if #available(iOS 13.0, *) {
+                            var rootVC:UIViewController? = nil
+                            for scene in UIApplication.shared.connectedScenes {
+                                if scene.activationState == .foregroundActive {
+                                    rootVC = ((scene as? UIWindowScene)!.delegate as! UIWindowSceneDelegate).window!!.rootViewController
+                                    break
+                                }
+                            }
+                            rootVC?.setNeedsStatusBarAppearanceUpdate()
+                        } else {
+                            // Fallback on earlier versions
+                            let rootController: UIViewController? = UIApplication.shared.keyWindow?.rootViewController
+                            rootController?.setNeedsStatusBarAppearanceUpdate()
                         }
-                        #endif
-                        if completion != nil {
-                            completion!()
-                        }
-                        // Run an (optional) completionHandler
                         
                     }
+                    #endif
+                    if completion != nil {
+                        completion!()
+                    }
+                    // Run an (optional) completionHandler
+                    
                 }
-                
-                // UIViewAnimationOptionBeginFromCurrentState AND a delay doesn't always work as expected
-                // When UIViewAnimationOptionBeginFromCurrentState is set, animateWithDuration: evaluates the current
-                // values to check if an animation is necessary. The evaluation happens at function call time and not
-                // after the delay => the animation is sometimes skipped. Therefore we delay using dispatch_after.
-                
-                let dipatchTime = DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC)))
-                DispatchQueue.main.asyncAfter(deadline: dipatchTime, execute: {
-                    if strongSelf.fadeOutAnimationDuration > 0 {
-                            UIView.animate(withDuration: strongSelf.fadeOutAnimationDuration, delay: 0, options: [.allowUserInteraction, .curveEaseOut, .beginFromCurrentState], animations: {
-                                animationsBlock()
-                            }) { finished in
-                                completionBlock()
-                            }
-                    }else {
+            }
+            
+            // UIViewAnimationOptionBeginFromCurrentState AND a delay doesn't always work as expected
+            // When UIViewAnimationOptionBeginFromCurrentState is set, animateWithDuration: evaluates the current
+            // values to check if an animation is necessary. The evaluation happens at function call time and not
+            // after the delay => the animation is sometimes skipped. Therefore we delay using dispatch_after.
+            
+            let dipatchTime = DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC)))
+            DispatchQueue.main.asyncAfter(deadline: dipatchTime, execute: {
+                if strongSelf.fadeOutAnimationDuration > 0 {
+                    UIView.animate(withDuration: strongSelf.fadeOutAnimationDuration, delay: 0, options: [.allowUserInteraction, .curveEaseOut, .beginFromCurrentState], animations: {
                         animationsBlock()
+                    }) { finished in
                         completionBlock()
                     }
-                })
-                
-                // Inform iOS to redraw the view hierarchy
-                strongSelf.setNeedsDisplay()
-        }
-    )
+                }else {
+                    animationsBlock()
+                    completionBlock()
+                }
+            })
+            
+            // Inform iOS to redraw the view hierarchy
+            strongSelf.setNeedsDisplay()
+            }
+        )
     }
     
     @objc private func dismiss() {
@@ -618,28 +653,28 @@ public class IHProgressHUD : UIView {
         // Check if an image or progress ring is displayed
         let imageUsed: Bool = (getImageView().image) != nil && !((getImageView().isHidden) )
         let progressUsed: Bool = getImageView().isHidden
-
+        
         // Calculate size of string
         var labelRect : CGRect = CGRect.zero
         var labelHeight: CGFloat = 0.0
         var labelWidth: CGFloat = 0.0
-
+        
         if getStatusLabel().text != nil {
             let constraintSize = CGSize(width: 200.0, height: 300.0)
-            labelRect = getStatusLabel().text?.boundingRect(with: constraintSize, options: [.usesFontLeading, .truncatesLastVisibleLine, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: getStatusLabel().font], context: nil) ?? CGRect.zero
+            labelRect = getStatusLabel().text?.boundingRect(with: constraintSize, options: [.usesFontLeading, .truncatesLastVisibleLine, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: getStatusLabel().font ?? UIFont.systemFont(ofSize: 15)], context: nil) ?? CGRect.zero
             labelHeight = CGFloat(ceilf(Float(labelRect.height )))
             labelWidth = CGFloat(ceilf(Float(labelRect.width )))
         }
-
+        
         // Calculate hud size based on content
         // For the beginning use default values, these
         // might get update if string is too large etc.
         var hudWidth: CGFloat
         var hudHeight: CGFloat
-
+        
         var contentWidth: CGFloat = 0.0
         var contentHeight: CGFloat = 0.0
-
+        
         if (imageUsed || progressUsed) {
             if imageUsed {
                 contentWidth = getImageView().frame.width
@@ -651,21 +686,21 @@ public class IHProgressHUD : UIView {
         }
         // |-spacing-content-spacing-|
         hudWidth = CGFloat(IHProgressHUDHorizontalSpacing + max(labelWidth, contentWidth) + IHProgressHUDHorizontalSpacing)
-
+        
         // |-spacing-content-(labelSpacing-label-)spacing-|
         hudHeight = CGFloat(IHProgressHUDVerticalSpacing) + labelHeight + contentHeight + CGFloat(IHProgressHUDVerticalSpacing)
         if ((getStatusLabel().text != nil) && (imageUsed || progressUsed )) {
             // Add spacing if both content and label are used
             hudHeight += CGFloat(IHProgressHUDLabelSpacing)//8 [80]
         }
-
+        
         // Update values on subviews
         getHudView().bounds = CGRect(x: 0.0, y: 0.0, width: max(minimumSize.width, hudWidth), height: max(minimumSize.height, hudHeight))
-
+        
         // Animate value update
         CATransaction.begin()
         CATransaction.setDisableActions(true)
-
+        
         // Spinner and image view
         var centerY: CGFloat
         if getStatusLabel().text != nil {
@@ -694,11 +729,14 @@ public class IHProgressHUD : UIView {
         getStatusLabel().center = CGPoint(x: getHudView().bounds.midX , y: centerY)
         CATransaction.commit()
     }
-
+    
     private func registerNotifications() {
         #if os(iOS)
-        NotificationCenter.default.addObserver(self, selector: #selector(positionHUD(_:)), name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
-        
+        if #available(iOS 13.0, *) {
+            NotificationCenter.default.addObserver(self, selector: #selector(positionHUD(_:)), name: UIDevice.orientationDidChangeNotification, object: nil)
+        } else {
+            NotificationCenter.default.addObserver(self, selector: #selector(positionHUD(_:)), name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
+        }
         NotificationCenter.default.addObserver(self, selector: #selector(self.positionHUD(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.positionHUD(_:)), name: UIResponder.keyboardDidHideNotification, object: nil)
@@ -830,18 +868,18 @@ public class IHProgressHUD : UIView {
     
     private func getFrontWindow() -> UIWindow? {
         if IHProgressHUD.isNotAppExtension {
-        let frontToBackWindows: NSEnumerator = (UIApplication.shared.windows as NSArray).reverseObjectEnumerator()
-        for window in frontToBackWindows {
-            guard let win : UIWindow = window as? UIWindow else {return nil}
-            let windowOnMainScreen: Bool = win.screen == UIScreen.main
-            let windowIsVisible: Bool = !win.isHidden && (win.alpha > 0)
-            var windowLevelSupported = false
-            windowLevelSupported = win.windowLevel >= UIWindow.Level.normal && win.windowLevel <= maxSupportedWindowLevel
-            
-            let windowKeyWindow = win.isKeyWindow
-
-            if windowOnMainScreen && windowIsVisible && windowLevelSupported && windowKeyWindow {
-                return win
+            let frontToBackWindows: NSEnumerator = (UIApplication.shared.windows as NSArray).reverseObjectEnumerator()
+            for window in frontToBackWindows {
+                guard let win : UIWindow = window as? UIWindow else {return nil}
+                let windowOnMainScreen: Bool = win.screen == UIScreen.main
+                let windowIsVisible: Bool = !win.isHidden && (win.alpha > 0)
+                var windowLevelSupported = false
+                windowLevelSupported = win.windowLevel >= UIWindow.Level.normal && win.windowLevel <= maxSupportedWindowLevel
+                
+                let windowKeyWindow = win.isKeyWindow
+                
+                if windowOnMainScreen && windowIsVisible && windowLevelSupported && windowKeyWindow {
+                    return win
                 }
             }
         }
@@ -850,32 +888,32 @@ public class IHProgressHUD : UIView {
     
     private func getVisibleKeyboardHeight() -> CGFloat {
         if IHProgressHUD.isNotAppExtension {
-        var keyboardWindow : UIWindow? = nil
-        for testWindow in UIApplication.shared.windows {
-            if !testWindow.self.isEqual(UIWindow.self) {
-                keyboardWindow = testWindow
-                break
+            var keyboardWindow : UIWindow? = nil
+            for testWindow in UIApplication.shared.windows {
+                if !testWindow.self.isEqual(UIWindow.self) {
+                    keyboardWindow = testWindow
+                    break
+                }
             }
-        }
-        for possibleKeyboard in keyboardWindow?.subviews ?? [] {
-            var viewName = String.init(describing: possibleKeyboard.self)
-            if viewName.hasPrefix("UI") {
-                if viewName.hasSuffix("PeripheralHostView") || viewName.hasSuffix("Keyboard") {
-                    return possibleKeyboard.bounds.height
-                } else if viewName.hasSuffix("InputSetContainerView") {
-                    for possibleKeyboardSubview: UIView? in possibleKeyboard.subviews {
-                        viewName = String.init(describing: possibleKeyboardSubview.self)
-                        if viewName.hasPrefix("UI") && viewName.hasSuffix("InputSetHostView") {
-                            let convertedRect = possibleKeyboard.convert(possibleKeyboardSubview?.frame ?? CGRect.zero, to: self)
-                            let intersectedRect: CGRect = convertedRect.intersection(bounds)
-                            if !intersectedRect.isNull {
-                                return intersectedRect.height
+            for possibleKeyboard in keyboardWindow?.subviews ?? [] {
+                var viewName = String.init(describing: possibleKeyboard.self)
+                if viewName.hasPrefix("UI") {
+                    if viewName.hasSuffix("PeripheralHostView") || viewName.hasSuffix("Keyboard") {
+                        return possibleKeyboard.bounds.height
+                    } else if viewName.hasSuffix("InputSetContainerView") {
+                        for possibleKeyboardSubview: UIView? in possibleKeyboard.subviews {
+                            viewName = String.init(describing: possibleKeyboardSubview.self)
+                            if viewName.hasPrefix("UI") && viewName.hasSuffix("InputSetHostView") {
+                                let convertedRect = possibleKeyboard.convert(possibleKeyboardSubview?.frame ?? CGRect.zero, to: self)
+                                let intersectedRect: CGRect = convertedRect.intersection(bounds)
+                                if !intersectedRect.isNull {
+                                    return intersectedRect.height
+                                }
                             }
                         }
                     }
                 }
             }
-        }
         }
         return 0
     }
@@ -887,7 +925,7 @@ public class IHProgressHUD : UIView {
         updateMotionEffect(forXMotionEffectType: xMotionEffectType, yMotionEffectType: yMotionEffectType)
     }
     #endif
-
+    
     private func updateMotionEffect(forXMotionEffectType xMotionEffectType: UIInterpolatingMotionEffect.EffectType, yMotionEffectType: UIInterpolatingMotionEffect.EffectType) {
         let effectX = UIInterpolatingMotionEffect(keyPath: "center.x", type: xMotionEffectType)
         effectX.minimumRelativeValue = -IHProgressHUDParallaxDepthPoints
@@ -904,14 +942,14 @@ public class IHProgressHUD : UIView {
         getHudView().motionEffects = []
         getHudView().addMotionEffect(effectGroup)
     }
-
+    
     private func move(to newCenter: CGPoint, rotateAngle angle: CGFloat) {
         getHudView().transform = CGAffineTransform(rotationAngle: angle)
         guard let container = containerView else {
             getHudView().center = CGPoint(x: newCenter.x + offsetFromCenter.horizontal, y: newCenter.y + offsetFromCenter.vertical)
             return
         }
-            getHudView().center = CGPoint(x: container.center.x + offsetFromCenter.horizontal, y: container.center.y + offsetFromCenter.vertical)
+        getHudView().center = CGPoint(x: container.center.x + offsetFromCenter.horizontal, y: container.center.y + offsetFromCenter.vertical)
     }
 }
 
@@ -979,7 +1017,7 @@ extension IHProgressHUD {
     
     public class func set(foregroundColor color: UIColor) {
         sharedView.foregroundColor = color
-//        sharedView.defaultStyle = .custom
+        //        sharedView.defaultStyle = .custom
     }
     // default is [UIColor blackColor], only used for ProgressHUDStyleCustom
     
@@ -1095,7 +1133,7 @@ extension IHProgressHUD {
     public class func dismissWithDelay(_ delay: TimeInterval, completion: (() -> Void)?) {
         sharedView.dismissWithDelay(delay, completion: completion)
     }
-
+    
     public class func isVisible() -> Bool {
         return sharedView.getBackGroundView().alpha > 0.0
     }
@@ -1247,12 +1285,12 @@ extension IHProgressHUD {
             controlView?.addTarget(self, action: #selector(controlViewDidReceiveTouchEvent(_:for:)), for: .touchDown)
         }
         if IHProgressHUD.isNotAppExtension {
-        if let windowBounds : CGRect = UIApplication.shared.delegate?.window??.bounds {
-            controlView?.frame = windowBounds
+            if let windowBounds : CGRect = UIApplication.shared.delegate?.window??.bounds {
+                controlView?.frame = windowBounds
             }
         }
         else {
-        controlView?.frame = UIScreen.main.bounds
+            controlView?.frame = UIScreen.main.bounds
         }
         return controlView!
     }
