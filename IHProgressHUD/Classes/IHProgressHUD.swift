@@ -94,11 +94,11 @@ public class IHProgressHUD : UIView {
     @available(iOS 10.0, *)
     private var hapticGenerator: UINotificationFeedbackGenerator? {
         get {
-        if hapticsEnabled == true {
-        return UINotificationFeedbackGenerator()
-        } else {
-        return nil
-        }
+            if hapticsEnabled == true {
+                return UINotificationFeedbackGenerator()
+            } else {
+                return nil
+            }
         }
     }
     #endif
