@@ -370,8 +370,10 @@ public class IHProgressHUD : UIView {
                 var rootVC:UIViewController? = nil
                 for scene in UIApplication.shared.connectedScenes {
                     if scene.activationState == .foregroundActive {
-                        rootVC = ((scene as? UIWindowScene)!.delegate as! UIWindowSceneDelegate).window!!.rootViewController
-                        break
+                        if let vc = ((scene as? UIWindowScene)?.delegate as? UIWindowSceneDelegate)?.window??.rootViewController {
+                            rootVC = vc
+                            break
+                        }
                     }
                 }
                 frame = rootVC?.view.window?.bounds ?? UIScreen.main.bounds
