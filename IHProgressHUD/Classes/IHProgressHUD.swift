@@ -94,11 +94,11 @@ public class IHProgressHUD : UIView {
     @available(iOS 10.0, *)
     private var hapticGenerator: UINotificationFeedbackGenerator? {
         get {
-            if hapticsEnabled == true {
-                return UINotificationFeedbackGenerator()
-            } else {
-                return nil
-            }
+        if hapticsEnabled == true {
+        return UINotificationFeedbackGenerator()
+        } else {
+        return nil
+        }
         }
     }
     #endif
@@ -381,18 +381,20 @@ public class IHProgressHUD : UIView {
                     orientation = or
                 }
                 if let statFrame = rootVC?.view.window?.windowScene?.statusBarManager?.statusBarFrame {
-                     statusBarFrame = statFrame
+                    statusBarFrame = statFrame
                 }
             } else {
                 // Fallback on earlier versions
-                if let appDelegate = UIApplication.shared.delegate,
-                    let window : UIWindow = appDelegate.window! {
-                    frame = window.bounds
+                if let appDelegate = UIApplication.shared.delegate {
+                    if let window = appDelegate.window {
+                        if let windowFrame = window?.bounds {
+                            frame = windowFrame
+                        }
+                    }
                 }
                 orientation = UIApplication.shared.statusBarOrientation
-                 statusBarFrame = UIApplication.shared.statusBarFrame
+                statusBarFrame = UIApplication.shared.statusBarFrame
             }
-            
             
             
             if frame.width > frame.height {
@@ -417,7 +419,7 @@ public class IHProgressHUD : UIView {
             } else {
                 keyboardHeight = getVisibleKeyboardHeight()
             }
-           
+            
             updateMotionEffectForOrientation(orientation)
         }
         #endif
@@ -596,7 +598,7 @@ public class IHProgressHUD : UIView {
                             var rootVC:UIViewController? = nil
                             for scene in UIApplication.shared.connectedScenes {
                                 if scene.activationState == .foregroundActive {
-                                    rootVC = ((scene as? UIWindowScene)!.delegate as! UIWindowSceneDelegate).window!!.rootViewController
+                                    rootVC = ((scene as? UIWindowScene)?.delegate as? UIWindowSceneDelegate)?.window??.rootViewController
                                     break
                                 }
                             }
