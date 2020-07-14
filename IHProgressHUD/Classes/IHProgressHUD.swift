@@ -58,7 +58,8 @@ public class IHProgressHUD : UIView {
     private var ringNoTextRadius: CGFloat = 24.0
     private var cornerRadius: CGFloat = 14.0
     private var font = UIFont.preferredFont(forTextStyle: .subheadline)
-    private var foregroundColor : UIColor?
+    private var foregroundColor: UIColor?
+    private var foregroundImageColor: UIColor? // default is the same as foregroundColor
     private var backgroundLayerColor = UIColor.init(white: 0, alpha: 0.4)
     private var imageViewSize: CGSize = CGSize.init(width: 28, height: 28)
     private var shouldTintImages : Bool = true
@@ -80,6 +81,7 @@ public class IHProgressHUD : UIView {
     private var backgroundView: UIView?
     private var backgroundRadialGradientLayer: RadialGradientLayer?
     private var hudView: UIVisualEffectView?
+    private var hudViewCustomBlurEffect: UIBlurEffect?
     private var statusLabel: UILabel?
     private var imageView: UIImageView?
     private var indefiniteAnimatedView: IndefiniteAnimatedView?
@@ -128,7 +130,7 @@ public class IHProgressHUD : UIView {
             if (indefiniteAnimatedView == nil) {
                 indefiniteAnimatedView = IndefiniteAnimatedView.init(frame: .zero)
             }
-            indefiniteAnimatedView?.setIndefinite(strokeColor: foreGroundColorForStyle())
+            indefiniteAnimatedView?.setIndefinite(strokeColor: foregroundImageColorForStyle())
             indefiniteAnimatedView?.setIndefinite(strokeThickness: ringThickness)
             var radius :CGFloat = 0.0
             if getStatusLabel().text != nil {
@@ -139,7 +141,7 @@ public class IHProgressHUD : UIView {
             indefiniteAnimatedView?.setIndefinite(radius: radius)
         } else {
             indefiniteAnimatedView?.removeAnimationLayer()
-            indefiniteAnimatedView?.setActivityIndicator(color: foreGroundColorForStyle())
+            indefiniteAnimatedView?.setActivityIndicator(color: foregroundImageColorForStyle())
             indefiniteAnimatedView?.startAnimation()
         }
         indefiniteAnimatedView?.sizeToFit()
@@ -529,8 +531,8 @@ public class IHProgressHUD : UIView {
             if strongSelf.shouldTintImages {
                 if image.renderingMode != UIImage.RenderingMode.alwaysTemplate {
                     strongSelf.getImageView().image = image.withRenderingMode(.alwaysTemplate)
-                    strongSelf.getImageView().tintColor = strongSelf.foreGroundColorForStyle()
                 }
+                strongSelf.getImageView().tintColor = strongSelf.foregroundImageColorForStyle()
             } else {
                 strongSelf.getImageView().image = image
             }
@@ -772,7 +774,7 @@ public class IHProgressHUD : UIView {
             backgroundRingView?.set(strokeEnd: 1.0)
         }
         
-        backgroundRingView?.set(strokeColor: foreGroundColorForStyle().withAlphaComponent(0.1))
+        backgroundRingView?.set(strokeColor: foregroundImageColorForStyle().withAlphaComponent(0.1))
         backgroundRingView?.set(strokeThickness: ringThickness)
         
         var radius : CGFloat = 0.0
@@ -791,7 +793,7 @@ public class IHProgressHUD : UIView {
         }
         
         ringView?.set(strokeThickness: ringThickness)
-        ringView?.set(strokeColor: foreGroundColorForStyle())
+        ringView?.set(strokeColor: foregroundImageColorForStyle())
         var radius : CGFloat = 0.0
         if getStatusLabel().text != nil {
             radius = ringRadius
@@ -831,7 +833,7 @@ public class IHProgressHUD : UIView {
         if statusLabel?.superview == nil && statusLabel != nil {
             getHudView().contentView.addSubview(statusLabel!)
         }
-        statusLabel?.textColor = foreGroundColorForStyle()
+        statusLabel?.textColor = foregroundColorForStyle()
         statusLabel?.font = font
         statusLabel?.alpha = 1.0
         statusLabel?.isHidden = false
@@ -849,6 +851,7 @@ public class IHProgressHUD : UIView {
             
             getHudView().backgroundColor = backgroundColorForStyle().withAlphaComponent(0.6)
         } else {
+            getHudView().effect = hudViewCustomBlurEffect
             getHudView().backgroundColor = backgroundColorForStyle()
         }
         
@@ -859,6 +862,10 @@ public class IHProgressHUD : UIView {
         getBackgroundRingView().alpha = 1.0
     }
     
+    private func foregroundImageColorForStyle() -> UIColor {
+        return foregroundImageColor ?? foregroundColorForStyle()
+    }
+
     private func backgroundColorForStyle() -> UIColor {
         if defaultStyle == .light {
             return .white
@@ -986,9 +993,7 @@ extension IHProgressHUD {
     
     public class func set(minimumSize: CGSize) {
         sharedView.minimumSize = minimumSize
-    }
-    
-    // default is CGSizeZero, can be used to avoid resizing for a larger message
+    } // default is CGSizeZero, can be used to avoid resizing for a larger message
     
     public class func set(ringThickness: CGFloat) {
         sharedView.ringThickness = ringThickness
@@ -996,7 +1001,7 @@ extension IHProgressHUD {
     
     public class func set(ringRadius : CGFloat) {
         sharedView.ringRadius = ringRadius
-    }// default is 18 pt
+    } // default is 18 pt
     
     public class func setRing(noTextRingRadius radius: CGFloat) {
         sharedView.ringNoTextRadius = radius
@@ -1004,16 +1009,15 @@ extension IHProgressHUD {
     
     public class func set(cornerRadius: CGFloat) {
         sharedView.cornerRadius = cornerRadius
-    }// default is 14 pt
+    } // default is 14 pt
     
     public class func set(borderColor color : UIColor) {
         sharedView.getHudView().layer.borderColor = color.cgColor
-        
-    }// default is nil
+    } // default is nil
     
     public class func set(borderWidth width: CGFloat) {
         sharedView.getHudView().layer.borderWidth = width
-    }// default is 0
+    } // default is 0
     
     public class func set(font: UIFont) {
         sharedView.font = font
@@ -1021,14 +1025,21 @@ extension IHProgressHUD {
     
     public class func set(foregroundColor color: UIColor) {
         sharedView.foregroundColor = color
-        //        sharedView.defaultStyle = .custom
-    }
-    // default is [UIColor blackColor], only used for ProgressHUDStyleCustom
+    } // default is [UIColor blackColor], only used for ProgressHUDStyleCustom
+    
+    public class func set(foregroundImageColor color: UIColor) {
+        sharedView.foregroundImageColor = color
+    } // default is nil == foregroundColor, only used for SVProgressHUDStyleCustom
     
     public class func set(backgroundColor color: UIColor) {
         sharedView.backgroundColor = color
         sharedView.defaultStyle = .custom
     } // default is [UIColor whiteColor], only used for ProgressHUDStyleCustom
+    
+    public class func set(HudViewCustomBlurEffec blurEffect: UIBlurEffect) {
+        sharedView.hudViewCustomBlurEffect = blurEffect
+        sharedView.defaultStyle = .custom
+    } // default is nil, only used for SVProgressHUDStyleCustom, can be combined with backgroundColor
     
     public class func set(backgroundLayerColor color: UIColor) {
         sharedView.backgroundLayerColor = color
@@ -1057,7 +1068,7 @@ extension IHProgressHUD {
     public class func set(viewForExtension view: UIView) {
         IHProgressHUD.isNotAppExtension = false
         sharedView.viewForExtension = view
-    }// default is nil, only used if #define SV_APP_EXTENSIONS is set
+    } // default is nil, only used if #define SV_APP_EXTENSIONS is set
     
     public class func set(graceTimeInterval interval: TimeInterval) {
         sharedView.graceTimeInterval = interval
@@ -1205,7 +1216,7 @@ extension IHProgressHUD {
 
 //MARK: - Instance Getter Methods
 extension IHProgressHUD {
-    private func foreGroundColorForStyle() -> UIColor {
+    private func foregroundColorForStyle() -> UIColor {
         guard let color = foregroundColor else {
             if defaultStyle == .light {
                 return .black
