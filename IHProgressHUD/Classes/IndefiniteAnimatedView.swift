@@ -15,7 +15,7 @@ class IndefiniteAnimatedView : UIView {
     private var activityIndicator : UIActivityIndicatorView?
     private var strokeThickness : CGFloat?
     private var strokeColor : UIColor?
-    private var indefinteAnimatedLayer : CAShapeLayer?
+    private var indefiniteAnimatedGradientLayer : CAGradientLayer?
     private var radius : CGFloat?
     
     override init(frame: CGRect) {
@@ -37,9 +37,9 @@ extension IndefiniteAnimatedView {
         if (self.radius != radius) {
             self.radius = radius
             
-            self.getIndefinteAnimatedLayer().removeFromSuperlayer()
-            self.indefinteAnimatedLayer = nil
-            
+            getIndefiniteAnimatedGradientLayer().removeFromSuperlayer()
+            indefiniteAnimatedGradientLayer = nil
+
             if superview != nil {
                 layoutAnimatedLayer()
             }
@@ -48,50 +48,64 @@ extension IndefiniteAnimatedView {
     
     func setIndefinite(strokeThickness : CGFloat) {
         self.strokeThickness = strokeThickness
-        if let strkthickness = self.strokeThickness {
-            getIndefinteAnimatedLayer().lineWidth = strkthickness
+        
+        getIndefiniteAnimatedGradientLayer().removeFromSuperlayer()
+        indefiniteAnimatedGradientLayer = nil
+        
+        if superview != nil {
+            layoutAnimatedLayer()
         }
     }
     
     func setIndefinite(strokeColor: UIColor) {
         self.strokeColor = strokeColor
-        getIndefinteAnimatedLayer().strokeColor = strokeColor.cgColor
+        
+        getIndefiniteAnimatedGradientLayer().removeFromSuperlayer()
+        indefiniteAnimatedGradientLayer = nil
+        
+        if superview != nil {
+            layoutAnimatedLayer()
+        }
     }
     
 }
 
 //MARK: - Getter Functions
 extension IndefiniteAnimatedView {
-    private func getIndefinteAnimatedLayer() -> CAShapeLayer {
-        if self.indefinteAnimatedLayer != nil {
-            return self.indefinteAnimatedLayer!
+    private func getIndefiniteAnimatedGradientLayer() -> CAGradientLayer {
+        if indefiniteAnimatedGradientLayer != nil {
+            return indefiniteAnimatedGradientLayer!
         } else {
-            let localRingRadius : CGFloat = radius ?? 18
-            let localStrokeThickness : CGFloat = strokeThickness ?? 2
-            let localStrokeColor : UIColor = strokeColor ?? UIColor.black
-            
+            let localRingRadius: CGFloat = radius ?? 18
+            let localStrokeThickness: CGFloat = strokeThickness ?? 2
+            let localStrokeColor: UIColor = strokeColor ?? UIColor.black
             let arcCenter = CGPoint(x: localRingRadius + localStrokeThickness / 2 + 5, y: localRingRadius + localStrokeThickness / 2 + 5)
-            let smoothedPath = UIBezierPath(arcCenter: arcCenter, radius: localRingRadius, startAngle: -CGFloat.pi / 2, endAngle: CGFloat.pi  + CGFloat.pi / 2, clockwise: true)
             
-            indefinteAnimatedLayer = CAShapeLayer()
-            indefinteAnimatedLayer?.contentsScale = UIScreen.main.scale
-            indefinteAnimatedLayer?.frame = CGRect.init(x: 0, y: 0, width: arcCenter.x * 2, height: arcCenter.y * 2)
-            indefinteAnimatedLayer?.fillColor = UIColor.clear.cgColor
-            indefinteAnimatedLayer?.strokeColor = localStrokeColor.cgColor
-            indefinteAnimatedLayer?.lineWidth = localStrokeThickness
-            indefinteAnimatedLayer?.lineCap = CAShapeLayerLineCap.round
-            indefinteAnimatedLayer?.lineJoin = CAShapeLayerLineJoin.bevel
-            indefinteAnimatedLayer?.path = smoothedPath.cgPath
+            let smoothedPath = UIBezierPath(arcCenter: arcCenter, radius: localRingRadius, startAngle: .pi * 3 / 2, endAngle: -0.5 * .pi, clockwise: false)
             
-            let maskLayer = CALayer()
-            let image = loadImageBundle(named: "angle-mask")!
-            maskLayer.contents = image.cgImage
-            maskLayer.frame = indefinteAnimatedLayer!.bounds
-            indefinteAnimatedLayer?.mask = maskLayer
+            let shapeLayer = CAShapeLayer()
+            shapeLayer.contentsScale = UIScreen.main.scale
+            shapeLayer.frame = CGRect(x: 0.0, y: 0.0, width: arcCenter.x * 2, height: arcCenter.y * 2)
+            shapeLayer.fillColor = UIColor.clear.cgColor
+            shapeLayer.strokeColor = strokeColor?.cgColor
+            shapeLayer.lineWidth = localStrokeThickness
+            shapeLayer.lineCap = .round
+            shapeLayer.lineJoin = .round
+            shapeLayer.path = smoothedPath.cgPath
+            shapeLayer.strokeStart = 0.4
+            shapeLayer.strokeEnd = 1.0
             
-            let animationDuration  = TimeInterval.init(1)
-            let linearCurve = CAMediaTimingFunction.init(name: .linear)
-            let animation = CABasicAnimation.init(keyPath: "transform.rotation")
+            indefiniteAnimatedGradientLayer = CAGradientLayer()
+            indefiniteAnimatedGradientLayer?.startPoint = CGPoint(x: 0.5, y: 0.0)
+            indefiniteAnimatedGradientLayer?.endPoint = CGPoint(x: 0.5, y: 1.0)
+            indefiniteAnimatedGradientLayer?.frame = shapeLayer.bounds
+            indefiniteAnimatedGradientLayer?.colors = [localStrokeColor.withAlphaComponent(0).cgColor, localStrokeColor.withAlphaComponent(0.5).cgColor, localStrokeColor.cgColor]
+            indefiniteAnimatedGradientLayer?.locations = [NSNumber(value: 0.25), NSNumber(value: 0.5), NSNumber(value: 1.0)]
+            indefiniteAnimatedGradientLayer?.mask = shapeLayer
+            
+            let animationDuration = TimeInterval(1)
+            let linearCurve = CAMediaTimingFunction(name: .linear)
+            let animation = CABasicAnimation(keyPath: "transform.rotation")
             animation.fromValue = 0
             animation.toValue = CGFloat.pi * 2
             animation.duration = animationDuration
@@ -100,28 +114,14 @@ extension IndefiniteAnimatedView {
             animation.repeatCount = .infinity
             animation.fillMode = .forwards
             animation.autoreverses = false
-            indefinteAnimatedLayer?.mask?.add(animation, forKey: "rotate")
-            
-            
-            let animationGroup = CAAnimationGroup.init()
-            animationGroup.duration = animationDuration
-            animationGroup.repeatCount = .infinity
-            animationGroup.isRemovedOnCompletion = false
-            animationGroup.timingFunction = linearCurve
-            
-            let strokeStartAnimation = CABasicAnimation.init(keyPath: "strokeStart")
-            strokeStartAnimation.duration = animationDuration
-            strokeStartAnimation.fromValue = 0.015
-            strokeStartAnimation.toValue = 0.0001
-            
-            animationGroup.animations = [strokeStartAnimation]
-            indefinteAnimatedLayer?.add(animationGroup, forKey: "progress")
+            indefiniteAnimatedGradientLayer?.add(animation, forKey: "progress")
         }
-        return self.indefinteAnimatedLayer!
+        return self.indefiniteAnimatedGradientLayer!
     }
 }
 
-//MARK: - ActivityIndicatorView Functions
+// MARK: - ActivityIndicatorView Functions
+
 extension IndefiniteAnimatedView {
     
     func removeAnimationLayer() {
@@ -130,7 +130,7 @@ extension IndefiniteAnimatedView {
                 activityView.removeFromSuperview()
             }
         }
-        getIndefinteAnimatedLayer().removeFromSuperlayer()
+        getIndefiniteAnimatedGradientLayer().removeFromSuperlayer()
     }
     
     func startAnimation() {
@@ -157,13 +157,13 @@ extension IndefiniteAnimatedView {
         if let _ = newSuperview {
             layoutAnimatedLayer()
         } else {
-            getIndefinteAnimatedLayer().removeFromSuperlayer()
-            indefinteAnimatedLayer = nil
+            getIndefiniteAnimatedGradientLayer().removeFromSuperlayer()
+            indefiniteAnimatedGradientLayer = nil
         }
     }
     
     private func layoutAnimatedLayer() {
-        let calayer = getIndefinteAnimatedLayer()
+        let calayer = getIndefiniteAnimatedGradientLayer()
         self.layer.addSublayer(calayer)
         let widthDiff: CGFloat = bounds.width - layer.bounds.width
         let heightDiff: CGFloat = bounds.height - layer.bounds.height

@@ -50,7 +50,7 @@ class ProgressAnimatedView: UIView {
         let localStrokeThickness : CGFloat = strokeThickness ?? 2
         return CGSize(width: (localRadius + localStrokeThickness / 2 + 5) * 2, height: (localRadius + localStrokeThickness / 2 + 5) * 2)
     }
-
+    
 }
 
 //MARK: - Setter
@@ -71,7 +71,7 @@ extension ProgressAnimatedView {
     func set(strokeThickness : CGFloat) {
         self.strokeThickness = strokeThickness
         getRingAnimatedLayer().lineWidth = strokeThickness
-
+        
         if superview != nil {
             layoutAnimatedLayer()
         }
@@ -118,7 +118,7 @@ extension ProgressAnimatedView {
             _ringAnimatedLayer.strokeColor = strokeColor?.cgColor
             _ringAnimatedLayer.lineWidth = localStrokeThickness
             _ringAnimatedLayer.lineCap = .round
-            _ringAnimatedLayer.lineJoin = .bevel
+            _ringAnimatedLayer.lineJoin = .round
             _ringAnimatedLayer.path = smoothedPath.cgPath
             self.ringAnimatedLayer = _ringAnimatedLayer
         }

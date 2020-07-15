@@ -62,7 +62,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func showSuccessWithStatus(_ sender: Any) {
-        IHProgressHUD.showSuccesswithStatus("Status Sucess")
+        IHProgressHUD.showSuccesswithStatus("Status Success")
     }
     
     @IBAction func showErrorWithStatus(_ sender: UIButton) {
