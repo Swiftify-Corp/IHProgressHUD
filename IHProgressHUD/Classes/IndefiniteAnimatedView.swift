@@ -2,7 +2,7 @@
 //  Converted to Swift 4 by Swiftify v4.2.29618 - https://objectivec2swift.com/
 //
 //  IndefiniteAnimatedView.swift
-//  SVProgressHUD, https://github.com/SVProgressHUD/SVProgressHUD
+//  IHProgressHUD, https://github.com/IHProgressHUD/IHProgressHUD
 //
 //  Original Copyright (c) 2014-2018 Guillaume Campagna. All rights reserved.
 //  Modified Copyright © 2018 Ibrahim Hassan. All rights reserved.
@@ -10,13 +10,13 @@
 
 import UIKit
 
-class IndefiniteAnimatedView : UIView {
+class IndefiniteAnimatedView: UIView {
     
-    private var activityIndicator : UIActivityIndicatorView?
-    private var strokeThickness : CGFloat?
-    private var strokeColor : UIColor?
-    private var indefinteAnimatedLayer : CAShapeLayer?
-    private var radius : CGFloat?
+    private var activityIndicator: UIActivityIndicatorView?
+    private var strokeThickness: CGFloat?
+    private var strokeColor: UIColor?
+    private var indefinteAnimatedLayer: CAShapeLayer?
+    private var radius: CGFloat?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,7 +46,7 @@ extension IndefiniteAnimatedView {
         }
     }
     
-    func setIndefinite(strokeThickness : CGFloat) {
+    func setIndefinite(strokeThickness: CGFloat) {
         self.strokeThickness = strokeThickness
         if let strkthickness = self.strokeThickness {
             getIndefinteAnimatedLayer().lineWidth = strkthickness
@@ -66,9 +66,9 @@ extension IndefiniteAnimatedView {
         if self.indefinteAnimatedLayer != nil {
             return self.indefinteAnimatedLayer!
         } else {
-            let localRingRadius : CGFloat = radius ?? 18
-            let localStrokeThickness : CGFloat = strokeThickness ?? 2
-            let localStrokeColor : UIColor = strokeColor ?? UIColor.black
+            let localRingRadius: CGFloat = radius ?? 18
+            let localStrokeThickness: CGFloat = strokeThickness ?? 2
+            let localStrokeColor: UIColor = strokeColor ?? UIColor.black
             
             let arcCenter = CGPoint(x: localRingRadius + localStrokeThickness / 2 + 5, y: localRingRadius + localStrokeThickness / 2 + 5)
             let smoothedPath = UIBezierPath(arcCenter: arcCenter, radius: localRingRadius, startAngle: -CGFloat.pi / 2, endAngle: CGFloat.pi  + CGFloat.pi / 2, clockwise: true)
@@ -145,7 +145,7 @@ extension IndefiniteAnimatedView {
     }
     
     func setActivityIndicator(color: UIColor) {
-        activityIndicator = UIActivityIndicatorView.init(style: .whiteLarge)
+        activityIndicator = UIActivityIndicatorView.init(style: .large)
         activityIndicator?.hidesWhenStopped = true
         activityIndicator?.startAnimating()
         activityIndicator?.color = color
