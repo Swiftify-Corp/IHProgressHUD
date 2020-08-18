@@ -2,7 +2,7 @@
 //  Converted to Swift 4 by Swiftify v4.2.29618 - https://objectivec2swift.com/
 //
 //  IndefiniteAnimatedView.swift
-//  SVProgressHUD, https://github.com/IHProgressHUD/IHProgressHUD
+//  IHProgressHUD, https://github.com/IHProgressHUD/IHProgressHUD
 //
 //  Original Copyright (c) 2014-2018 Guillaume Campagna. All rights reserved.
 //  Modified Copyright © 2018 Ibrahim Hassan. All rights reserved.
@@ -11,20 +11,20 @@
 
 import UIKit
 
-public enum NotificationName : String {
+public enum NotificationName: String {
     case IHProgressHUDDidReceiveTouchEvent, IHProgressHUDDidTouchDownInside, IHProgressHUDWillDisappear, IHProgressHUDDidDisappear, IHProgressHUDWillAppear, IHProgressHUDDidAppear, IHProgressHUDStatusUserInfoKey
     public func getNotificationName() -> Notification.Name {
         return Notification.Name.init(self.rawValue)
     }
 }
 
-public enum IHProgressHUDStyle : Int {
+public enum IHProgressHUDStyle: Int {
     case light
     case dark
     case custom
 }
 
-public enum IHProgressHUDMaskType : Int {
+public enum IHProgressHUDMaskType: Int {
     case none = 1
     case clear
     case black
@@ -32,24 +32,24 @@ public enum IHProgressHUDMaskType : Int {
     case custom
 }
 
-public enum IHProgressHUDAnimationType : Int {
+public enum IHProgressHUDAnimationType: Int {
     case flat
     case native
 }
 
-private let IHProgressHUDParallaxDepthPoints : CGFloat = 10.0
-private let IHProgressHUDUndefinedProgress : CGFloat = -1
+private let IHProgressHUDParallaxDepthPoints: CGFloat = 10.0
+private let IHProgressHUDUndefinedProgress: CGFloat = -1
 private let IHProgressHUDDefaultAnimationDuration: CGFloat = 0.15
 private let IHProgressHUDVerticalSpacing: CGFloat = 12.0
 private let IHProgressHUDHorizontalSpacing: CGFloat = 12.0
 private let IHProgressHUDLabelSpacing: CGFloat = 8.0
 
-public class IHProgressHUD : UIView {
+public class IHProgressHUD: UIView {
     
     static var isNotAppExtension = true
     
     private var defaultStyle = IHProgressHUDStyle.light
-    private var defaultMaskType = IHProgressHUDMaskType.none
+    private var defaultMaskType = IHProgressHUDMaskType.clear
     private var defaultAnimationType = IHProgressHUDAnimationType.flat
     private var containerView: UIView?
     private var minimumSize = CGSize.init(width: 50, height: 50)
@@ -59,13 +59,13 @@ public class IHProgressHUD : UIView {
     private var cornerRadius: CGFloat = 14.0
     private var font = UIFont.preferredFont(forTextStyle: .subheadline)
     private var foregroundColor: UIColor?
-    private var foregroundImageColor: UIColor? // default is the same as foregroundColor
+    private var foregroundImageColor: UIColor?
     private var backgroundLayerColor = UIColor.init(white: 0, alpha: 0.4)
     private var imageViewSize: CGSize = CGSize.init(width: 28, height: 28)
-    private var shouldTintImages : Bool = true
+    private var shouldTintImages: Bool = true
     private var infoImage: UIImage!
-    private var successImage: UIImage! //= UIImage.init(named: "success")!
-    private var errorImage: UIImage! //= UIImage.init(named: "error")!
+    private var successImage: UIImage!
+    private var errorImage: UIImage!
     private var viewForExtension: UIView?
     private var graceTimeInterval: TimeInterval = 0.0
     private var minimumDismissTimeInterval: TimeInterval = 5.0
@@ -132,7 +132,7 @@ public class IHProgressHUD : UIView {
             }
             indefiniteAnimatedView?.setIndefinite(strokeColor: foregroundImageColorForStyle())
             indefiniteAnimatedView?.setIndefinite(strokeThickness: ringThickness)
-            var radius :CGFloat = 0.0
+            var radius: CGFloat = 0.0
             if getStatusLabel().text != nil {
                 radius = ringRadius
             } else {
@@ -148,8 +148,8 @@ public class IHProgressHUD : UIView {
         return indefiniteAnimatedView!
     }
     
-    private static let sharedView : IHProgressHUD = {
-        var localInstance : IHProgressHUD?
+    private static let sharedView: IHProgressHUD = {
+        var localInstance: IHProgressHUD?
         if Thread.current.isMainThread {
             if IHProgressHUD.isNotAppExtension {
                 if let window = UIApplication.shared.delegate?.window {
@@ -177,7 +177,7 @@ public class IHProgressHUD : UIView {
         return localInstance!
     }()
     
-    // MARK :- Setters
+    // MARK:- Setters
     
     private func showProgress(progress: Float, status: String?) {
         OperationQueue.main.addOperation({ [weak self] in
@@ -219,7 +219,6 @@ public class IHProgressHUD : UIView {
                 CATransaction.begin()
                 CATransaction.setDisableActions(true)
                 strongSelf.getRingView().set(strokeEnd: CGFloat(progress))
-                //                strongSelf.ringView.strokeEnd = progress;
                 CATransaction.commit()
                 
                 // Update the activity count
@@ -273,7 +272,7 @@ public class IHProgressHUD : UIView {
         
     }
     
-    func notificationUserInfo() -> [String : Any]? {
+    func notificationUserInfo() -> [String: Any]? {
         if let statusText = getStatusLabel().text {
             return [NotificationName.IHProgressHUDStatusUserInfoKey.rawValue: statusText]
         }
@@ -300,7 +299,7 @@ public class IHProgressHUD : UIView {
             NotificationCenter.default.post(name: NotificationName.IHProgressHUDWillAppear.getNotificationName(), object: self, userInfo: notificationUserInfo())
             
             getHudView().transform = CGAffineTransform.init(scaleX: 1/1.5, y: 1/1.5)
-            let animationsBlock : () -> Void = {
+            let animationsBlock: () -> Void = {
                 // Zoom HUD a little to make a nice appear / pop up animation
                 self.getHudView().transform = CGAffineTransform.identity
                 
@@ -309,7 +308,7 @@ public class IHProgressHUD : UIView {
             }
             
             
-            let completionBlock : () -> Void = {
+            let completionBlock: () -> Void = {
                 if self.getBackGroundView().alpha == 1.0 {
                     self.registerNotifications()
                 }
@@ -321,7 +320,7 @@ public class IHProgressHUD : UIView {
                 UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: nil)
                 
                 UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: self.statusLabel?.text)
-                if let cd : TimeInterval = object as? TimeInterval {
+                if let cd: TimeInterval = object as? TimeInterval {
                     let timer = Timer.init(timeInterval: cd, target: self, selector: #selector(self.dismiss), userInfo: nil, repeats: false)
                     self.setFadeOut(timer: timer)
                     RunLoop.main.add(self.fadeOutTimer!, forMode: .common)
@@ -343,7 +342,7 @@ public class IHProgressHUD : UIView {
             
             UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: self.statusLabel?.text)
             
-            if let convertedDuration : TimeInterval = object as? TimeInterval {
+            if let convertedDuration: TimeInterval = object as? TimeInterval {
                 let timer = Timer.init(timeInterval: convertedDuration, target: self, selector: #selector(dismiss), userInfo: nil, repeats: false)
                 setFadeOut(timer: timer)
                 RunLoop.main.add(self.fadeOutTimer!, forMode: .common)
@@ -446,7 +445,7 @@ public class IHProgressHUD : UIView {
         let posX = orientationFrame.midX
         let posY = CGFloat(floor(activeHeight * 0.45))
         
-        let rotateAngle : CGFloat = 0.0
+        let rotateAngle: CGFloat = 0.0
         let newCenter = CGPoint.init(x: posX, y: posY)
         
         if notification != nil {
@@ -661,7 +660,7 @@ public class IHProgressHUD : UIView {
         let progressUsed: Bool = getImageView().isHidden
         
         // Calculate size of string
-        var labelRect : CGRect = CGRect.zero
+        var labelRect: CGRect = CGRect.zero
         var labelHeight: CGFloat = 0.0
         var labelWidth: CGFloat = 0.0
         
@@ -777,7 +776,7 @@ public class IHProgressHUD : UIView {
         backgroundRingView?.set(strokeColor: foregroundImageColorForStyle().withAlphaComponent(0.1))
         backgroundRingView?.set(strokeThickness: ringThickness)
         
-        var radius : CGFloat = 0.0
+        var radius: CGFloat = 0.0
         if getStatusLabel().text != nil {
             radius = ringRadius
         } else {
@@ -794,7 +793,7 @@ public class IHProgressHUD : UIView {
         
         ringView?.set(strokeThickness: ringThickness)
         ringView?.set(strokeColor: foregroundImageColorForStyle())
-        var radius : CGFloat = 0.0
+        var radius: CGFloat = 0.0
         if getStatusLabel().text != nil {
             radius = ringRadius
         } else {
@@ -881,7 +880,7 @@ public class IHProgressHUD : UIView {
         if IHProgressHUD.isNotAppExtension {
             let frontToBackWindows: NSEnumerator = (UIApplication.shared.windows as NSArray).reverseObjectEnumerator()
             for window in frontToBackWindows {
-                guard let win : UIWindow = window as? UIWindow else {return nil}
+                guard let win: UIWindow = window as? UIWindow else {return nil}
                 let windowOnMainScreen: Bool = win.screen == UIScreen.main
                 let windowIsVisible: Bool = !win.isHidden && (win.alpha > 0)
                 var windowLevelSupported = false
@@ -899,7 +898,7 @@ public class IHProgressHUD : UIView {
     
     private func getVisibleKeyboardHeight() -> CGFloat {
         if IHProgressHUD.isNotAppExtension {
-            var keyboardWindow : UIWindow? = nil
+            var keyboardWindow: UIWindow? = nil
             for testWindow in UIApplication.shared.windows {
                 if !testWindow.self.isEqual(UIWindow.self) {
                     keyboardWindow = testWindow
@@ -931,8 +930,8 @@ public class IHProgressHUD : UIView {
     
     #if os(iOS)
     private func updateMotionEffectForOrientation(_ orientation: UIInterfaceOrientation) {
-        let xMotionEffectType: UIInterpolatingMotionEffect.EffectType = orientation.isPortrait ? .tiltAlongHorizontalAxis : .tiltAlongVerticalAxis
-        let yMotionEffectType: UIInterpolatingMotionEffect.EffectType = orientation.isPortrait ? .tiltAlongVerticalAxis : .tiltAlongHorizontalAxis
+        let xMotionEffectType: UIInterpolatingMotionEffect.EffectType = orientation.isPortrait ? .tiltAlongHorizontalAxis: .tiltAlongVerticalAxis
+        let yMotionEffectType: UIInterpolatingMotionEffect.EffectType = orientation.isPortrait ? .tiltAlongVerticalAxis: .tiltAlongHorizontalAxis
         updateMotionEffect(forXMotionEffectType: xMotionEffectType, yMotionEffectType: yMotionEffectType)
     }
     #endif
@@ -999,7 +998,7 @@ extension IHProgressHUD {
         sharedView.ringThickness = ringThickness
     } // default is 2 pt
     
-    public class func set(ringRadius : CGFloat) {
+    public class func set(ringRadius: CGFloat) {
         sharedView.ringRadius = ringRadius
     } // default is 18 pt
     
@@ -1011,7 +1010,7 @@ extension IHProgressHUD {
         sharedView.cornerRadius = cornerRadius
     } // default is 14 pt
     
-    public class func set(borderColor color : UIColor) {
+    public class func set(borderColor color: UIColor) {
         sharedView.getHudView().layer.borderColor = color.cgColor
     } // default is nil
     
@@ -1029,17 +1028,18 @@ extension IHProgressHUD {
     
     public class func set(foregroundImageColor color: UIColor) {
         sharedView.foregroundImageColor = color
-    } // default is nil == foregroundColor, only used for SVProgressHUDStyleCustom
+    } // default is nil == foregroundColor, only used for IHProgressHUDStyleCustom
     
     public class func set(backgroundColor color: UIColor) {
-        sharedView.backgroundColor = color
+        sharedView.hudBackgroundColor = color
         sharedView.defaultStyle = .custom
+        sharedView.defaultMaskType = .custom
     } // default is [UIColor whiteColor], only used for ProgressHUDStyleCustom
     
     public class func set(HudViewCustomBlurEffec blurEffect: UIBlurEffect) {
         sharedView.hudViewCustomBlurEffect = blurEffect
         sharedView.defaultStyle = .custom
-    } // default is nil, only used for SVProgressHUDStyleCustom, can be combined with backgroundColor
+    } // default is nil, only used for IHProgressHUDStyleCustom, can be combined with backgroundColor
     
     public class func set(backgroundLayerColor color: UIColor) {
         sharedView.backgroundLayerColor = color
@@ -1300,7 +1300,7 @@ extension IHProgressHUD {
             controlView?.addTarget(self, action: #selector(controlViewDidReceiveTouchEvent(_:for:)), for: .touchDown)
         }
         if IHProgressHUD.isNotAppExtension {
-            if let windowBounds : CGRect = UIApplication.shared.delegate?.window??.bounds {
+            if let windowBounds: CGRect = UIApplication.shared.delegate?.window??.bounds {
                 controlView?.frame = windowBounds
             }
         }
