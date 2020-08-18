@@ -1180,6 +1180,14 @@ extension IHProgressHUD {
         }
         #endif
     }
+
+	public class func showSuccesswithStatus(_ status: String?, _ duration: CGFloat? = 2.0) {
+        sharedView.show(image: sharedView.successImage, status: status, duration: TimeInterval(duration!))
+		#if os(iOS)
+        if #available(iOS 10.0, *) {
+			sharedView.hapticGenerator?.notificationOccurred(.success)
+		#endif
+    }
     
     public class func showError(withStatus status: String?) {
         showImage(sharedView.errorImage, status: status)
