@@ -2,7 +2,7 @@
 //  Converted to Swift 4 by Swiftify v4.2.29618 - https://objectivec2swift.com/
 //
 //  IndefiniteAnimatedView.swift
-//  SVProgressHUD, https://github.com/SVProgressHUD/SVProgressHUD
+//  IHProgressHUD, https://github.com/IHProgressHUD/IHProgressHUD
 //
 //  Original Copyright (c) 2014-2018 Guillaume Campagna. All rights reserved.
 //  Modified Copyright © 2018 Ibrahim Hassan. All rights reserved.
@@ -12,11 +12,11 @@ import UIKit
 
 class ProgressAnimatedView: UIView {
     
-    private var radius : CGFloat?
-    private var strokeThickness : CGFloat?
-    private var strokeColor : UIColor?
-    private var strokeEnd : CGFloat?
-    private var ringAnimatedLayer : CAShapeLayer?
+    private var radius: CGFloat?
+    private var strokeThickness: CGFloat?
+    private var strokeColor: UIColor?
+    private var strokeEnd: CGFloat?
+    private var ringAnimatedLayer: CAShapeLayer?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,8 +46,8 @@ class ProgressAnimatedView: UIView {
     }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
-        let localRadius : CGFloat = radius ?? 18
-        let localStrokeThickness : CGFloat = strokeThickness ?? 2
+        let localRadius: CGFloat = radius ?? 18
+        let localStrokeThickness: CGFloat = strokeThickness ?? 2
         return CGSize(width: (localRadius + localStrokeThickness / 2 + 5) * 2, height: (localRadius + localStrokeThickness / 2 + 5) * 2)
     }
 
@@ -68,7 +68,7 @@ extension ProgressAnimatedView {
         }
     }
     
-    func set(strokeThickness : CGFloat) {
+    func set(strokeThickness: CGFloat) {
         self.strokeThickness = strokeThickness
         getRingAnimatedLayer().lineWidth = strokeThickness
 
