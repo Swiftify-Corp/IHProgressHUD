@@ -1,6 +1,0 @@
-framework module IHProgressHUD {
-  umbrella header "IHProgressHUD-tvOS-umbrella.h"
-
-  export *
-  module * { export * }
-}
