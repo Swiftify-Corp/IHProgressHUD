@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "IHProgressHUD",
+        "repositoryURL": "https://github.com/AsadAzam/IHProgressHUD.git",
+        "state": {
+          "branch": null,
+          "revision": "9ba164354c368a8f5dae1729a78786c5f7220fbf",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
