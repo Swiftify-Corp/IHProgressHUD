@@ -47,8 +47,6 @@ Currently not available but would be available shortly.
 
 ## Usage
 
-(see sample Xcode project in `/Demo`)
-
 `IHProgressHUD` is created as a singleton (i.e. it doesn't need to be explicitly allocated and instantiated; you directly call `IHProgressHUD.method()`). It can be accessed from even the background thread.
 
 **Use `IHProgressHUD` wisely! Only use it if you absolutely need to perform a task before taking the user forward. Bad use case examples: pull to refresh, infinite scrolling, sending message.**
@@ -219,5 +217,5 @@ review the guidelines written by [Nicolas Gallagher](https://github.com/necolas)
 
 ## Credits
 
-`IHProgressHUD` is brought to you by [Md Ibrahim Hassan ](mdibrahimhassan@gmail.com)
-If you're using `IHProgressHUD` in your project, attribution would be very appreciated. This project is converted with the help of [Swiftify](https://objectivec2swift.com/). The conversion process can be found [here](https://medium.com/swiftify/converting-svprogresshud-to-swift-using-swiftify-27be1817b7f6).
+`IHProgressHUD` is brought to you by [Md Ibrahim Hassan](https://github.com/Ibrahimhass) and [contributors to the project](https://github.com/Swiftify-Corp/IHProgressHUD/graphs/contributors).
+If you're using `IHProgressHUD` in your project, attribution would be very appreciated. This project is converted with the help of [Swiftify](https://swiftify.com/). The conversion process can be found [here](https://medium.com/swiftify/converting-svprogresshud-to-swift-using-swiftify-27be1817b7f6).
