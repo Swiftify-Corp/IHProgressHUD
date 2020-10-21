@@ -1311,13 +1311,25 @@ extension IHProgressHUD {
     }
     
     private func loadImageBundle(named imageName:String) -> UIImage? {
-        var imageBundle = Bundle.init(for: IHProgressHUD.self)
-        if let resourcePath = Bundle.module.path(forResource: "IHProgressHUD", ofType: "bundle") {
-            if let resourcesBundle = Bundle(path: resourcePath) {
-                imageBundle = resourcesBundle
+        #if SWIFT_PACKAGE
+            var imageBundle = Bundle.init(for: IHProgressHUD.self)
+            if let resourcePath = Bundle.module.path(forResource: "IHProgressHUD", ofType: "bundle") {
+                if let resourcesBundle = Bundle(path: resourcePath) {
+                    imageBundle = resourcesBundle
+                }
             }
-        }
+
+            return UIImage(named: imageName, in: imageBundle, compatibleWith: nil)
         
-        return UIImage(named: imageName, in: imageBundle, compatibleWith: nil)
+        #else
+            var imageBundle = Bundle.init(for: IHProgressHUD.self)
+            if let resourcePath = imageBundle.path(forResource: "IHProgressHUD", ofType: "bundle") {
+                if let resourcesBundle = Bundle(path: resourcePath) {
+                    imageBundle = resourcesBundle
+                }
+            }
+
+            return (UIImage(named: imageName, in: imageBundle, compatibleWith: nil))
+        #endif
     }
 }

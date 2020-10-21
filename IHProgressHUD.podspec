@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/Swiftify-Corp/IHProgressHUD.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/IbrahimH_ss_n'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
   s.tvos.deployment_target = '9.0'
   s.source_files = 'Sources/IHProgressHUD/*.swift'
   s.resources = 'Sources/IHProgressHUD/Resources/IHProgressHUD.bundle'
