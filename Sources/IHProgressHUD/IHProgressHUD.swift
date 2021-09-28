@@ -626,7 +626,7 @@ public class IHProgressHUD : UIView {
             // values to check if an animation is necessary. The evaluation happens at function call time and not
             // after the delay => the animation is sometimes skipped. Therefore we delay using dispatch_after.
             
-            let dipatchTime = DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC)))
+            let dipatchTime = DispatchTime.now() + delay
             DispatchQueue.main.asyncAfter(deadline: dipatchTime, execute: {
                 if strongSelf.fadeOutAnimationDuration > 0 {
                     UIView.animate(withDuration: strongSelf.fadeOutAnimationDuration, delay: 0, options: [.allowUserInteraction, .curveEaseOut, .beginFromCurrentState], animations: {
