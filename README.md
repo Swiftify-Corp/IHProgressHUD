@@ -3,8 +3,7 @@
 `IHProgressHUD` is a clean and easy-to-use HUD meant to display the progress of an ongoing task on iOS and tvOS. `IHProgressHUD` is based on [SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD) and ported to Swift with the [help of Swiftify](https://medium.com/swiftify/converting-svprogresshud-to-swift-using-swiftify-27be1817b7f6),
 with improvements like added thread safety and not using complier flag for use in iOS App Extension. 
 
-
-![IHProgressHUD](http://f.cl.ly/items/2G1F1Z0M0k0h2U3V1p39/SVProgressHUD.gif)
+![IHProgressHUD](https://imgur.com/pzLH4DF)
 
 ## Demo        
 
