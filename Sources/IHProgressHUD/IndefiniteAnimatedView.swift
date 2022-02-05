@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import CoreGraphics
 
 class IndefiniteAnimatedView : UIView {
     
@@ -19,7 +20,8 @@ class IndefiniteAnimatedView : UIView {
     private var radius : CGFloat?
     
     override init(frame: CGRect) {
-        super.init(frame: frame)
+        super(frame: frame)
+        
         if self.superview != nil {
             layoutAnimatedLayer()
         }
@@ -70,28 +72,36 @@ extension IndefiniteAnimatedView {
             let localStrokeThickness : CGFloat = strokeThickness ?? 2
             let localStrokeColor : UIColor = strokeColor ?? UIColor.black
             
-            let arcCenter = CGPoint(x: localRingRadius + localStrokeThickness / 2 + 5, y: localRingRadius + localStrokeThickness / 2 + 5)
-            let smoothedPath = UIBezierPath(arcCenter: arcCenter, radius: localRingRadius, startAngle: -CGFloat.pi / 2, endAngle: CGFloat.pi  + CGFloat.pi / 2, clockwise: true)
+            let arcCenter = CGPoint(
+                x: localRingRadius + localStrokeThickness / 2 + 5,
+                y: localRingRadius + localStrokeThickness / 2 + 5)
+            
+            let smoothedPath = UIBezierPath(
+                arcCenter: arcCenter,
+                radius: localRingRadius,
+                startAngle: -CGFloat.pi / 2,
+                endAngle: CGFloat.pi  + CGFloat.pi / 2,
+                clockwise: true)
             
             indefinteAnimatedLayer = CAShapeLayer()
             indefinteAnimatedLayer?.contentsScale = UIScreen.main.scale
-            indefinteAnimatedLayer?.frame = CGRect.init(x: 0, y: 0, width: arcCenter.x * 2, height: arcCenter.y * 2)
+            indefinteAnimatedLayer?.frame = CGRect(x: 0, y: 0, width: arcCenter.x * 2, height: arcCenter.y * 2)
             indefinteAnimatedLayer?.fillColor = UIColor.clear.cgColor
             indefinteAnimatedLayer?.strokeColor = localStrokeColor.cgColor
             indefinteAnimatedLayer?.lineWidth = localStrokeThickness
-            indefinteAnimatedLayer?.lineCap = CAShapeLayerLineCap.round
-            indefinteAnimatedLayer?.lineJoin = CAShapeLayerLineJoin.bevel
+            indefinteAnimatedLayer?.lineCap = CAShapeLayerLineCap.square
+            indefinteAnimatedLayer?.lineJoin = CAShapeLayerLineJoin.miter
             indefinteAnimatedLayer?.path = smoothedPath.cgPath
             
             let maskLayer = CALayer()
-            let image = loadImageBundle(named: "angle-mask")!
-            maskLayer.contents = image.cgImage
-            maskLayer.frame = indefinteAnimatedLayer!.bounds
+            let image = loadImageBundle(named: "angle-mask")
+            maskLayer.contents = image?.cgImage
+            maskLayer.frame = indefinteAnimatedLayer?.bounds ?? CGRect.zero
             indefinteAnimatedLayer?.mask = maskLayer
             
-            let animationDuration  = TimeInterval.init(1)
-            let linearCurve = CAMediaTimingFunction.init(name: .linear)
-            let animation = CABasicAnimation.init(keyPath: "transform.rotation")
+            let animationDuration  = TimeInterval(1)
+            let linearCurve = CAMediaTimingFunction(name: .linear)
+            let animation = CABasicAnimation(keyPath: "transform.rotation")
             animation.fromValue = 0
             animation.toValue = CGFloat.pi * 2
             animation.duration = animationDuration
@@ -102,21 +112,21 @@ extension IndefiniteAnimatedView {
             animation.autoreverses = false
             indefinteAnimatedLayer?.mask?.add(animation, forKey: "rotate")
             
-            
-            let animationGroup = CAAnimationGroup.init()
+            let animationGroup = CAAnimationGroup()
             animationGroup.duration = animationDuration
             animationGroup.repeatCount = .infinity
             animationGroup.isRemovedOnCompletion = false
             animationGroup.timingFunction = linearCurve
             
-            let strokeStartAnimation = CABasicAnimation.init(keyPath: "strokeStart")
+            let strokeStartAnimation = CABasicAnimation(keyPath: "strokeStart")
             strokeStartAnimation.duration = animationDuration
             strokeStartAnimation.fromValue = 0.015
-            strokeStartAnimation.toValue = 0.0001
+            strokeStartAnimation.toValue = 0.0000
             
             animationGroup.animations = [strokeStartAnimation]
             indefinteAnimatedLayer?.add(animationGroup, forKey: "progress")
         }
+        
         return self.indefinteAnimatedLayer!
     }
 }
@@ -130,13 +140,14 @@ extension IndefiniteAnimatedView {
                 activityView.removeFromSuperview()
             }
         }
+        
         getIndefinteAnimatedLayer().removeFromSuperlayer()
     }
     
     func startAnimation() {
         if let activityIndicator = activityIndicator {
             self.addSubview(activityIndicator)
-            activityIndicator.frame = CGRect.init(x: 8, y: 8, width: self.frame.size.width - 16, height: self.frame.size.height - 16)
+            activityIndicator.frame = CGRect(x: 8, y: 8, width: self.frame.size.width - 16, height: self.frame.size.height - 16)
         }
     }
     
@@ -145,7 +156,7 @@ extension IndefiniteAnimatedView {
     }
     
     func setActivityIndicator(color: UIColor) {
-        activityIndicator = UIActivityIndicatorView.init(style: .whiteLarge)
+        activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator?.hidesWhenStopped = true
         activityIndicator?.startAnimating()
         activityIndicator?.color = color
@@ -169,23 +180,27 @@ extension IndefiniteAnimatedView {
         let heightDiff: CGFloat = bounds.height - layer.bounds.height
         let xPos = bounds.width - layer.bounds.width / 2 - widthDiff / 2
         let yPos = bounds.height - layer.bounds.height / 2 - heightDiff / 2
-        calayer.position = CGPoint.init(x: xPos, y: yPos)
+        calayer.position = CGPoint(x: xPos, y: yPos)
     }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         let localRadius : CGFloat = radius ?? 18
         let localStrokeThickness : CGFloat = strokeThickness ?? 2
+        
         for view in self.subviews {
             if let _ = view as? UIActivityIndicatorView {
-                return CGSize.init(width: 50, height: 50)
+                return CGSize(width: 50, height: 50)
             }
         }
-        return CGSize.init(width: (localRadius + localStrokeThickness / 2 + 5) * 2, height: (localRadius + localStrokeThickness / 2 + 5) * 2)
+        
+        return CGSize(
+            width: (localRadius + localStrokeThickness / 2 + 5) * 2,
+            height: (localRadius + localStrokeThickness / 2 + 5) * 2)
     }
     
     private func loadImageBundle(named imageName:String) -> UIImage? {
         #if SWIFT_PACKAGE
-            var imageBundle = Bundle.init(for: IHProgressHUD.self)
+            var imageBundle = Bundle(for: IHProgressHUD.self)
             if let resourcePath = Bundle.module.path(forResource: "IHProgressHUD", ofType: "bundle") {
                 if let resourcesBundle = Bundle(path: resourcePath) {
                     imageBundle = resourcesBundle
@@ -195,7 +210,7 @@ extension IndefiniteAnimatedView {
             return UIImage(named: imageName, in: imageBundle, compatibleWith: nil)
         
         #else
-            var imageBundle = Bundle.init(for: IHProgressHUD.self)
+            var imageBundle = Bundle(for: IHProgressHUD.self)
             if let resourcePath = imageBundle.path(forResource: "IHProgressHUD", ofType: "bundle") {
                 if let resourcesBundle = Bundle(path: resourcePath) {
                     imageBundle = resourcesBundle

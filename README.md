@@ -146,7 +146,7 @@ class func set(foregroundColor color: UIColor) // default is nil
 
 class func set(backgroundColor color: UIColor) // default is nil
 
-class func set(backgroundLayerColor color: UIColor) // default is UIColor.init(white: 0, alpha: 0.4), only used for IHProgressHUDMaskType.custom
+class func set(backgroundLayerColor color: UIColor) // default is UIColor(white: 0, alpha: 0.4), only used for IHProgressHUDMaskType.custom
 
 class func set(imageViewSize size: CGSize) // default is 28x28 pt
 

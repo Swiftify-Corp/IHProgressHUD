@@ -18,10 +18,17 @@ class RadialGradientLayer: CALayer {
         let locations : [CGFloat] = [0.0, 1.0]
         let colors : [CGFloat] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.75]
         let colorSpace = CGColorSpaceCreateDeviceRGB()
-        if let gradient = CGGradient.init(colorSpace: colorSpace, colorComponents: colors, locations: locations, count: locationsCount) {
+        
+        if let gradient = CGGradient(colorSpace: colorSpace, colorComponents: colors, locations: locations, count: locationsCount) {
             let radius = min(bounds.size.width, bounds.size.height)
             
-            context.drawRadialGradient(gradient, startCenter: gradientCenter, startRadius: 0, endCenter: gradientCenter, endRadius: radius, options: CGGradientDrawingOptions.drawsAfterEndLocation)
+            context.drawRadialGradient(
+                gradient,
+                startCenter: gradientCenter,
+                startRadius: 0,
+                endCenter: gradientCenter,
+                endRadius: radius,
+                options: CGGradientDrawingOptions.drawsAfterEndLocation)
         }
     }
 }

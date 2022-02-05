@@ -19,7 +19,7 @@ class ProgressAnimatedView: UIView {
     private var ringAnimatedLayer : CAShapeLayer?
     
     override init(frame: CGRect) {
-        super.init(frame: frame)
+        super(frame: frame)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,15 +42,17 @@ class ProgressAnimatedView: UIView {
         let heightDiff = bounds.height - layer.bounds.height
         let layerPositionX = bounds.width  - layer.bounds.width / 2 - widthDiff / 2
         let layerPositionY = bounds.height - layer.bounds.height / 2 - heightDiff / 2
-        rlayer.position = CGPoint.init(x: layerPositionX, y: layerPositionY)
+        rlayer.position = CGPoint(x: layerPositionX, y: layerPositionY)
     }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         let localRadius : CGFloat = radius ?? 18
         let localStrokeThickness : CGFloat = strokeThickness ?? 2
-        return CGSize(width: (localRadius + localStrokeThickness / 2 + 5) * 2, height: (localRadius + localStrokeThickness / 2 + 5) * 2)
+        
+        return CGSize(
+            width: (localRadius + localStrokeThickness / 2 + 5) * 2,
+            height: (localRadius + localStrokeThickness / 2 + 5) * 2)
     }
-
 }
 
 //MARK: - Setter
@@ -75,7 +77,6 @@ extension ProgressAnimatedView {
         if superview != nil {
             layoutAnimatedLayer()
         }
-        
     }
     
     func set(strokeEnd: CGFloat) {
@@ -85,7 +86,6 @@ extension ProgressAnimatedView {
         if superview != nil {
             layoutAnimatedLayer()
         }
-        
     }
     
     func set(strokeColor: UIColor) {
@@ -108,12 +108,26 @@ extension ProgressAnimatedView {
             let localStrokeThickness: CGFloat = strokeThickness ?? 2
             let localRingRadius: CGFloat = radius ?? 18
             
-            let arcCenter = CGPoint(x: localRingRadius + localStrokeThickness / 2 + 5, y: localRingRadius + localStrokeThickness / 2 + 5)
-            let smoothedPath = UIBezierPath(arcCenter: arcCenter, radius: localRingRadius, startAngle: -CGFloat.pi / 2, endAngle: CGFloat.pi  + CGFloat.pi / 2, clockwise: true)
+            let arcCenter = CGPoint(
+                x: localRingRadius + localStrokeThickness / 2 + 5,
+                y: localRingRadius + localStrokeThickness / 2 + 5)
+            
+            let smoothedPath = UIBezierPath(
+                arcCenter: arcCenter,
+                radius: localRingRadius,
+                startAngle: -CGFloat.pi / 2,
+                endAngle: CGFloat.pi  + CGFloat.pi / 2,
+                clockwise: true)
             
             let _ringAnimatedLayer = CAShapeLayer()
             _ringAnimatedLayer.contentsScale = UIScreen.main.scale
-            _ringAnimatedLayer.frame = CGRect(x: 0.0, y: 0.0, width: arcCenter.x * 2, height: arcCenter.y * 2)
+            
+            _ringAnimatedLayer.frame = CGRect(
+                x: 0.0,
+                y: 0.0,
+                width: arcCenter.x * 2,
+                height: arcCenter.y * 2)
+            
             _ringAnimatedLayer.fillColor = UIColor.clear.cgColor
             _ringAnimatedLayer.strokeColor = strokeColor?.cgColor
             _ringAnimatedLayer.lineWidth = localStrokeThickness
@@ -122,7 +136,7 @@ extension ProgressAnimatedView {
             _ringAnimatedLayer.path = smoothedPath.cgPath
             self.ringAnimatedLayer = _ringAnimatedLayer
         }
+        
         return self.ringAnimatedLayer!
     }
-    
 }
