@@ -10,7 +10,7 @@
 Pod::Spec.new do |s|
 
   s.name             = 'IHProgressHUD'
-  s.version          = '0.1.5'
+  s.version          = '0.1.6'
   s.summary          = 'A clean and lightweight progress HUD for iOS and tvOS app based on SVProgressHUD, written in Swift.'
   s.license          = 'MIT'
   s.homepage         = 'https://github.com/Swiftify-Corp/IHProgressHUD/'

@@ -20,7 +20,7 @@ class IndefiniteAnimatedView : UIView {
     private var radius : CGFloat?
     
     override init(frame: CGRect) {
-        super(frame: frame)
+        super.init(frame: frame)
         
         if self.superview != nil {
             layoutAnimatedLayer()
@@ -156,7 +156,12 @@ extension IndefiniteAnimatedView {
     }
     
     func setActivityIndicator(color: UIColor) {
-        activityIndicator = UIActivityIndicatorView(style: .large)
+        if #available(iOS 13.0, *) {
+            activityIndicator = UIActivityIndicatorView(style: .large)
+        } else {
+            activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+        }
+        
         activityIndicator?.hidesWhenStopped = true
         activityIndicator?.startAnimating()
         activityIndicator?.color = color

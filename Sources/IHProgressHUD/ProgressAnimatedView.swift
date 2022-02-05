@@ -19,7 +19,7 @@ class ProgressAnimatedView: UIView {
     private var ringAnimatedLayer : CAShapeLayer?
     
     override init(frame: CGRect) {
-        super(frame: frame)
+        super.init(frame: frame)
     }
     
     required init?(coder aDecoder: NSCoder) {
