@@ -183,6 +183,7 @@ public class IHProgressHUD : UIView {
                 }
             }
         }
+        
         return localInstance!
     }()
     
@@ -629,6 +630,7 @@ public class IHProgressHUD : UIView {
     private func dismissWithDelay(_ delay: TimeInterval, completion: (() -> Void)?) {
         OperationQueue.main.addOperation({ [weak self] in
             guard let strongSelf = self else { return }
+            
             // Stop timer
             strongSelf.setGrace(timer: nil)
             // Post notification to inform user
