@@ -161,8 +161,18 @@ public class IHProgressHUD : UIView {
         
         if Thread.current.isMainThread {
             if IHProgressHUD.isNotAppExtension {
-                if let window = UIApplication.shared.delegate?.window {
-                    localInstance = IHProgressHUD(frame: window?.bounds ?? CGRect.zero)
+                var window: UIWindow?
+                if #available(iOS 13, *) {
+                    window = UIApplication.shared.connectedScenes
+                        .compactMap { $0 as? UIWindowScene }
+                        .flatMap { $0.windows }
+                        .first(where: { $0.isKeyWindow })
+                } else {
+                    window = UIApplication.shared.keyWindow
+                }
+            
+                if let window = window {
+                    localInstance = IHProgressHUD(frame: window.bounds)
                 } else {
                     localInstance = IHProgressHUD()
                 }
@@ -173,8 +183,18 @@ public class IHProgressHUD : UIView {
         } else {
             DispatchQueue.main.sync {
                 if IHProgressHUD.isNotAppExtension {
-                    if let window = UIApplication.shared.delegate?.window {
-                        localInstance = IHProgressHUD(frame: window?.bounds ?? CGRect.zero)
+                    var window: UIWindow?
+                    if #available(iOS 13, *) {
+                        window = UIApplication.shared.connectedScenes
+                            .compactMap { $0 as? UIWindowScene }
+                            .flatMap { $0.windows }
+                            .first(where: { $0.isKeyWindow })
+                    } else {
+                        window = UIApplication.shared.keyWindow
+                    }
+            
+                if let window = window {
+                        localInstance = IHProgressHUD(frame: window.bounds)
                     } else {
                         localInstance = IHProgressHUD()
                     }
@@ -444,13 +464,16 @@ public class IHProgressHUD : UIView {
                 }
             } else {
                 // Fallback on earlier versions
-                if let appDelegate = UIApplication.shared.delegate {
-                    if let window = appDelegate.window {
-                        if let windowFrame = window?.bounds {
-                            frame = windowFrame
-                        }
-                    }
+                var window: UIWindow?
+                if #available(iOS 13, *) {
+                    window = UIApplication.shared.connectedScenes
+                        .compactMap { $0 as? UIWindowScene }
+                        .flatMap { $0.windows }
+                        .first(where: { $0.isKeyWindow })
+                } else {
+                    window = UIApplication.shared.keyWindow
                 }
+                frame = window!.bounds
                 
                 orientation = UIApplication.shared.statusBarOrientation
                 statusBarFrame = UIApplication.shared.statusBarFrame
@@ -490,9 +513,16 @@ public class IHProgressHUD : UIView {
         let orientationFrame = bounds
         #if os(tvOS)
         if IHProgressHUD.isNotAppExtension {
-            if let keyWindow : UIWindow = UIApplication.shared.keyWindow {
-                frame = keyWindow.bounds
-            }
+            var window: UIWindow?
+                if #available(iOS 13, *) {
+                    window = UIApplication.shared.connectedScenes
+                        .compactMap { $0 as? UIWindowScene }
+                        .flatMap { $0.windows }
+                        .first(where: { $0.isKeyWindow })
+                } else {
+                    window = UIApplication.shared.keyWindow
+                }
+                frame = window!.bounds
         }
         
         updateMotionEffect(
