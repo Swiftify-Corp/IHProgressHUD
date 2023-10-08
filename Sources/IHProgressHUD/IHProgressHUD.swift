@@ -52,6 +52,7 @@ public class IHProgressHUD : UIView {
     private var defaultMaskType = IHProgressHUDMaskType.none
     private var defaultAnimationType = IHProgressHUDAnimationType.flat
     private var containerView: UIView?
+    private var labelConstraintSize = CGSize(width: 200.0, height: 300.0)
     private var minimumSize = CGSize(width: 50, height: 50)
     private var ringThickness: CGFloat = 2.0
     private var ringRadius: CGFloat = 18.0
@@ -783,9 +784,8 @@ public class IHProgressHUD : UIView {
         var labelWidth: CGFloat = 0.0
         
         if getStatusLabel().text != nil {
-            let constraintSize = CGSize(width: 200.0, height: 300.0)
             labelRect = getStatusLabel().text?.boundingRect(
-                with: constraintSize,
+                with: labelConstraintSize,
                 options: [.usesFontLeading, .truncatesLastVisibleLine, .usesLineFragmentOrigin],
                 attributes: [NSAttributedString.Key.font: getStatusLabel().font ?? UIFont.systemFont(ofSize: 15)],
                 context: nil) ?? CGRect.zero
@@ -1174,6 +1174,10 @@ extension IHProgressHUD {
     public class func set(containerView: UIView?) {
         sharedView.containerView = containerView
     } // default is window level
+    
+    public class func set(labelConstraintSize size: CGSize) {
+        sharedView.labelConstraintSize = size
+    } // default is 200x300 pt
     
     public class func set(minimumSize: CGSize) {
         sharedView.minimumSize = minimumSize
