@@ -1,7 +1,7 @@
 # IHProgressHUD
 
 `IHProgressHUD` is a clean and easy-to-use HUD meant to display the progress of an ongoing task on iOS and tvOS. `IHProgressHUD` is based on [SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD) and ported to Swift with the [help of Swiftify](https://medium.com/swiftify/converting-svprogresshud-to-swift-using-swiftify-27be1817b7f6),
-with improvements like added thread safety and not using complier flag for use in iOS App Extension. 
+with improvements like added thread safety and not using compiler flag for use in iOS App Extension. 
 
 If you are interested in learning more about the conversion process, please [checkout](https://medium.com/swiftify/converting-svprogresshud-to-swift-using-swiftify-27be1817b7f6).
 
@@ -104,7 +104,7 @@ class func popActivity()
 
 The HUD will get dismissed once the popActivity calls will match the number of show calls.
 
-Or show a confirmation glyph before before getting dismissed a little bit later. The display time depends on `minimumDismissTimeInterval` and the length of the given string.
+Or show a confirmation glyph before getting dismissed a little bit later. The display time depends on `minimumDismissTimeInterval` and the length of the given string.
 
 ```Swift
 class func showInfowithStatus(_ status: String?)
@@ -199,8 +199,8 @@ Users with devices prior to iPhone 7 will have no change in functionality.
 `IHProgressHUD` posts four notifications via `NSNotificationCenter` in response to being shown/dismissed:
 * `NotificationName.IHProgressHUDWillAppear` when the show animation starts
 * `NotificationName.IHProgressHUDDidAppear` when the show animation completes
-* `NotificationName.IHProgressHUDDidDisappear` when the dismiss animation starts
-* `NotificationName.IHProgressHUDDidAppear` when the dismiss animation completes
+* `NotificationName.IHProgressHUDWillDisappear` when the dismiss animation starts
+* `NotificationName.IHProgressHUDDidDisappear` when the dismiss animation completes
 
 Each notification passes a `userInfo` dictionary holding the HUD's status string (if any), retrievable via `[NotificationName.IHProgressHUDStatusUserInfoKey.getNotificationName()]`.
 
@@ -208,7 +208,7 @@ Each notification passes a `userInfo` dictionary holding the HUD's status string
 
 ## App Extensions
 
-When using `IHProgressHUD` in an App Extension,  use the `class func set(viewForExtension view: UIView)` there is no need to set any complier flag.  
+When using `IHProgressHUD` in an App Extension,  use the `class func set(viewForExtension view: UIView)` there is no need to set any compiler flag.  
 
 ## Contributing to this project
 
